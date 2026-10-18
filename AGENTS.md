@@ -21,6 +21,7 @@ npx expo-doctor             # diagnose dependency and config issues
 npx expo install --fix      # fix incompatible package versions
 ```
 
+
 Run lint and typecheck before declaring any task done.
 
 ## Navigation & Routing
