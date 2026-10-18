@@ -118,7 +118,7 @@ export const Select: React.FC<SelectProps> = ({
         </View>
 
         <Icon
-          name="ChevronDown"
+          name="chevron-down"
           size={16}
           color="#94A3B8"
         />
@@ -126,7 +126,7 @@ export const Select: React.FC<SelectProps> = ({
 
       {error ? (
         <View className="flex-row items-center gap-1 mt-1.5">
-          <Icon name="CircleX" size={13} color="#E11D48" />
+          <Icon name="close-circle" size={14} color="#E11D48" />
           <Text className="text-[11px] text-rose-600 font-medium">{error}</Text>
         </View>
       ) : hint ? (
@@ -159,7 +159,7 @@ export const Select: React.FC<SelectProps> = ({
                 hitSlop={8}
                 className="p-1 rounded-xl active:bg-slate-100"
               >
-                <Icon name="X" size={18} color="#94A3B8" />
+                <Icon name="close" size={18} color="#94A3B8" />
               </Pressable>
             </View>
 
@@ -179,15 +179,16 @@ export const Select: React.FC<SelectProps> = ({
                     `}
                   >
                     <Text
-                      className={`text-xs ${isSelected
+                      className={`text-xs ${
+                        isSelected
                           ? 'font-bold text-blue-700'
                           : 'font-medium text-slate-800'
-                        }`}
+                      }`}
                     >
                       {opt.label}
                     </Text>
                     {isSelected ? (
-                      <Icon name="Check" size={16} color="#2563EB" strokeWidth={2.5} />
+                      <Icon name="checkmark" size={16} color="#2563EB" />
                     ) : null}
                   </Pressable>
                 );

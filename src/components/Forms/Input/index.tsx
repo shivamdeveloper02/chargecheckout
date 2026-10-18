@@ -94,7 +94,7 @@ export const Input = forwardRef<TextInput, InputProps>(
 
         <View
           className={`
-            w-full flex-row items-center bg-white border rounded-xl px-3.5
+            w-full flex-row items-center bg-white border rounded-xl px-3.5 py-1.5
             ${disabled ? 'bg-slate-100 opacity-60' : ''}
             ${error
               ? 'border-rose-500'
@@ -122,7 +122,7 @@ export const Input = forwardRef<TextInput, InputProps>(
             className={`flex-1 py-3 text-xs text-slate-900 ${className}`}
             {...rest}
           />
-          {isPassword ? (
+          {isPassword && (
             <Pressable
               onPress={() => setShowPassword((prev) => !prev)}
               hitSlop={8}
@@ -130,28 +130,17 @@ export const Input = forwardRef<TextInput, InputProps>(
               accessibilityLabel={showPassword ? 'Hide password' : 'Show password'}
             >
               <Icon
-                name={showPassword ? 'EyeOff' : 'Eye'}
+                name={showPassword ? 'eye-off-outline' : 'eye-outline'}
                 size={18}
                 color="#94A3B8"
               />
             </Pressable>
-          ) : clearable && hasValue && onClear && !disabled ? (
-            <Pressable
-              onPress={onClear}
-              hitSlop={8}
-              className="ml-2 items-center justify-center"
-              accessibilityLabel="Clear input"
-            >
-              <Icon name="X" size={16} color="#94A3B8" />
-            </Pressable>
-          ) : rightIcon ? (
-            <View className="ml-2 items-center justify-center">{rightIcon}</View>
-          ) : null}
+          ) }
         </View>
 
         {error ? (
           <View className="flex-row items-center gap-1 mt-1.5">
-            <Icon name="CircleX" size={13} color="#E11D48" />
+            <Icon name="close-circle" size={14} color="#E11D48" />
             <Text className="text-[11px] text-rose-600 font-medium">{error}</Text>
           </View>
         ) : hint ? (

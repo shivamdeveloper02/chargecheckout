@@ -154,7 +154,7 @@ const ModalHeader: React.FC<ModalHeaderProps> = ({
           className="p-1 rounded-xl active:bg-neutral-100"
           accessibilityLabel="Close modal"
         >
-          <Icon name="X" size={18} color="#94A3B8" />
+          <Icon name="close" size={18} color="#94A3B8" />
         </Pressable>
       )}
     </View>
@@ -234,7 +234,7 @@ const ModalCloseButton: React.FC<{ className?: string }> = ({ className = '' }) 
       className={`p-1.5 rounded-xl active:bg-neutral-100 ${className}`}
       accessibilityLabel="Close"
     >
-      <Icon name="X" size={18} color="#94A3B8" />
+      <Icon name="close" size={18} color="#94A3B8" />
     </Pressable>
   );
 };

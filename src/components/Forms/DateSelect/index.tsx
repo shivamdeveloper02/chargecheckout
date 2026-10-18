@@ -90,7 +90,7 @@ export const DateSelect = forwardRef<TextInput, DateSelectProps>(
           `}
         >
           <View className="mr-2.5 items-center justify-center">
-            {leftIcon || <Icon name="Calendar" size={16} color="#94A3B8" />}
+            {leftIcon || <Icon name="calendar-outline" size={17} color="#94A3B8" />}
           </View>
 
           <TextInput
@@ -114,14 +114,14 @@ export const DateSelect = forwardRef<TextInput, DateSelectProps>(
               className="ml-2 items-center justify-center"
               accessibilityLabel="Clear date"
             >
-              <Icon name="X" size={16} color="#94A3B8" />
+              <Icon name="close" size={16} color="#94A3B8" />
             </Pressable>
           ) : null}
         </Pressable>
 
         {error ? (
           <View className="flex-row items-center gap-1 mt-1.5">
-            <Icon name="CircleX" size={13} color="#E11D48" />
+            <Icon name="close-circle" size={14} color="#E11D48" />
             <Text className="text-[11px] text-rose-600 font-medium">{error}</Text>
           </View>
         ) : hint ? (

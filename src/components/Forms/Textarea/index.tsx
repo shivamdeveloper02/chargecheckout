@@ -115,7 +115,7 @@ export const Textarea = forwardRef<TextInput, TextareaProps>(
         <View className="flex-row items-center justify-between mt-1">
           {error ? (
             <View className="flex-row items-center gap-1">
-              <Icon name="CircleX" size={13} color="#E11D48" />
+              <Icon name="close-circle" size={14} color="#E11D48" />
               <Text className="text-[11px] text-rose-600 font-medium">{error}</Text>
             </View>
           ) : hint ? (

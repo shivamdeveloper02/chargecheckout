@@ -50,7 +50,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           ${className}
         `}
       >
-        {checked ? <Icon name="Check" size={14} color="#FFFFFF" strokeWidth={3} /> : null}
+        {checked ? <Icon name="checkmark" size={14} color="#FFFFFF" /> : null}
       </View>
 
       {label || description ? (

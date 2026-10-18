@@ -1,59 +1,117 @@
 import React from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
-import * as LucideIcons from 'lucide-react-native';
-import type { LucideProps } from 'lucide-react-native';
+import {
+  AntDesign,
+  Entypo,
+  EvilIcons,
+  Feather,
+  FontAwesome,
+  FontAwesome5,
+  Fontisto,
+  Foundation,
+  Ionicons,
+  MaterialCommunityIcons,
+  MaterialIcons,
+  Octicons,
+  SimpleLineIcons,
+} from '@expo/vector-icons';
 
-export type IconName = keyof typeof LucideIcons | string;
+const iconSets = {
+  Ionicons,
+  MaterialIcons,
+  MaterialCommunityIcons,
+  FontAwesome,
+  FontAwesome5,
+  Feather,
+  AntDesign,
+  Entypo,
+  EvilIcons,
+  Foundation,
+  Octicons,
+  SimpleLineIcons,
+  Fontisto,
+};
 
-export interface IconProps extends Omit<LucideProps, 'size' | 'color' | 'strokeWidth' | 'style'> {
-  name: IconName;
+export type IconSetName = keyof typeof iconSets;
+
+const ioniconsNameMap: Record<string, string> = {
+  ArrowLeft: 'arrow-back',
+  'arrow-left': 'arrow-back',
+  X: 'close',
+  x: 'close',
+  Close: 'close',
+  close: 'close',
+  Check: 'checkmark',
+  check: 'checkmark',
+  CheckCircle: 'checkmark-circle',
+  CircleCheck: 'checkmark-circle',
+  CircleX: 'close-circle',
+  CircleAlert: 'alert-circle',
+  AlertCircle: 'alert-circle',
+  TriangleAlert: 'warning-outline',
+  AlertTriangle: 'warning-outline',
+  Info: 'information-circle',
+  info: 'information-circle',
+  Mail: 'mail-outline',
+  mail: 'mail-outline',
+  Lock: 'lock-closed-outline',
+  lock: 'lock-closed-outline',
+  Eye: 'eye-outline',
+  eye: 'eye-outline',
+  EyeOff: 'eye-off-outline',
+  'eye-off': 'eye-off-outline',
+  ChevronDown: 'chevron-down',
+  'chevron-down': 'chevron-down',
+  ChevronUp: 'chevron-up',
+  'chevron-up': 'chevron-up',
+  ChevronLeft: 'chevron-back',
+  'chevron-left': 'chevron-back',
+  ChevronRight: 'chevron-forward',
+  'chevron-right': 'chevron-forward',
+  Search: 'search-outline',
+  search: 'search-outline',
+  Calendar: 'calendar-outline',
+  calendar: 'calendar-outline',
+};
+
+export interface IconProps {
+  name: string;
+  type?: IconSetName;
   size?: number;
   color?: string;
-  strokeWidth?: number;
   style?: StyleProp<ViewStyle>;
   className?: string;
   fallback?: React.ReactNode;
 }
 
-const toPascalCase = (str: string): string => {
-  if (!str) return '';
-  return str
-    .replace(/[-_](\w)/g, (_, c) => c.toUpperCase())
-    .replace(/^\w/, (c) => c.toUpperCase());
-};
-
 export const Icon: React.FC<IconProps> = ({
   name,
+  type = 'Ionicons',
   size = 20,
-  strokeWidth = 2,
   color = '#0F172A',
-  className = '',
   style,
+  className = '',
   fallback,
-  ...props
 }) => {
-  if (!name || typeof name !== 'string') return null;
+  const IconComponent = iconSets[type] ?? Ionicons;
 
-  const pascalName = toPascalCase(name);
-  const iconMap = LucideIcons as unknown as Record<string, React.ComponentType<LucideProps>>;
-  const IconComponent = iconMap[name] || iconMap[pascalName];
-
-  if (!IconComponent) {
-    if (fallback) return <>{fallback}</>;
-    const HelpIcon = (LucideIcons as any).CircleHelp || (LucideIcons as any).HelpCircle;
-    if (HelpIcon) {
-      return (
-        <View style={style} className={className}>
-          <HelpIcon size={size} strokeWidth={strokeWidth} color="#94A3B8" {...props} />
-        </View>
-      );
-    }
-    return null;
+  const isValidIcon = name && typeof name === 'string';
+  if (!isValidIcon) {
+    return fallback ? <>{fallback}</> : null;
   }
+
+  const resolvedName =
+    type === 'Ionicons' && ioniconsNameMap[name]
+      ? ioniconsNameMap[name]
+      : name;
 
   return (
     <View style={style} className={className}>
-      <IconComponent size={size} strokeWidth={strokeWidth} color={color} {...props} />
+      <IconComponent
+        name={resolvedName as never}
+        size={size}
+        color={color}
+      />
     </View>
   );
 };

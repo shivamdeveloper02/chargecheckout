@@ -16,26 +16,26 @@ export const ToastContainer: React.FC = () => {
       case 'success':
         return (
           <View className="w-8 h-8 rounded-xl bg-emerald-50 border border-emerald-200 items-center justify-center">
-            <Icon name="CircleCheck" size={16} color="#059669" />
+            <Icon name="checkmark-circle" size={18} color="#059669" />
           </View>
         );
       case 'error':
         return (
           <View className="w-8 h-8 rounded-xl bg-rose-50 border border-rose-200 items-center justify-center">
-            <Icon name="CircleAlert" size={16} color="#E11D48" />
+            <Icon name="alert-circle" size={18} color="#E11D48" />
           </View>
         );
       case 'warning':
         return (
           <View className="w-8 h-8 rounded-xl bg-amber-50 border border-amber-200 items-center justify-center">
-            <Icon name="TriangleAlert" size={16} color="#D97706" />
+            <Icon name="warning-outline" size={18} color="#D97706" />
           </View>
         );
       case 'info':
       default:
         return (
           <View className="w-8 h-8 rounded-xl bg-blue-50 border border-blue-200 items-center justify-center">
-            <Icon name="Info" size={16} color="#2563EB" />
+            <Icon name="information-circle" size={18} color="#2563EB" />
           </View>
         );
     }
@@ -68,7 +68,7 @@ export const ToastContainer: React.FC = () => {
             hitSlop={8}
             className="p-1 rounded-lg active:bg-slate-100"
           >
-            <Icon name="X" size={14} color="#94A3B8" />
+            <Icon name="close" size={16} color="#94A3B8" />
           </Pressable>
         </View>
       ))}

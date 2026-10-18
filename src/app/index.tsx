@@ -1,4 +1,5 @@
 import { Image } from 'expo-image';
+import { router } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
@@ -22,6 +23,12 @@ export default function SplashScreenComponent() {
 
     logoOpacity.value = withTiming(1, { duration: 600, easing: Easing.out(Easing.cubic) });
     logoScale.value = withSpring(1, { damping: 15, stiffness: 120 });
+
+    const timer = setTimeout(() => {
+      router.replace('/login');
+    }, 1800);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const animatedStyle = useAnimatedStyle(() => ({

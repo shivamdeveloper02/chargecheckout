@@ -145,7 +145,7 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
                       }}
                       hitSlop={6}
                     >
-                      <Icon name="X" size={12} color="#2563EB" />
+                      <Icon name="close" size={12} color="#2563EB" />
                     </Pressable>
                   ) : null}
                 </View>
@@ -160,12 +160,12 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
           )}
         </View>
 
-        <Icon name="ChevronDown" size={16} color="#94A3B8" />
+        <Icon name="chevron-down" size={16} color="#94A3B8" />
       </Pressable>
 
       {error ? (
         <View className="flex-row items-center gap-1 mt-1.5">
-          <Icon name="CircleX" size={13} color="#E11D48" />
+          <Icon name="close-circle" size={14} color="#E11D48" />
           <Text className="text-[11px] text-rose-600 font-medium">{error}</Text>
         </View>
       ) : hint ? (
@@ -195,7 +195,7 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
                 hitSlop={8}
                 className="p-1 rounded-xl active:bg-slate-100"
               >
-                <Icon name="X" size={18} color="#94A3B8" />
+                <Icon name="close" size={18} color="#94A3B8" />
               </Pressable>
             </View>
 
@@ -203,7 +203,7 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
             {searchable ? (
               <View className="px-4 pt-3 pb-2">
                 <View className="flex-row items-center bg-slate-50 border border-slate-200 rounded-xl px-3 py-2">
-                  <Icon name="Search" size={15} color="#94A3B8" />
+                  <Icon name="search-outline" size={16} color="#94A3B8" />
                   <TextInput
                     value={searchQuery}
                     onChangeText={setSearchQuery}
@@ -213,7 +213,7 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
                   />
                   {searchQuery ? (
                     <Pressable onPress={() => setSearchQuery('')} hitSlop={6}>
-                      <Icon name="X" size={14} color="#94A3B8" />
+                      <Icon name="close" size={14} color="#94A3B8" />
                     </Pressable>
                   ) : null}
                 </View>
@@ -267,7 +267,7 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
                         ) : null}
                       </View>
                       {isSelected ? (
-                        <Icon name="Check" size={16} color="#2563EB" strokeWidth={2.5} />
+                        <Icon name="checkmark" size={16} color="#2563EB" />
                       ) : null}
                     </Pressable>
                   );
