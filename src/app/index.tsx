@@ -1,17 +1,9 @@
 import { Image } from 'expo-image';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-import { ActivityIndicator, Dimensions, Text, View } from 'react-native';
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
+import { ActivityIndicator, Text, View } from 'react-native';
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-const { width } = Dimensions.get('window');
 
 export default function SplashScreenComponent() {
   const logoScale = useSharedValue(0.9);
@@ -40,15 +32,15 @@ export default function SplashScreenComponent() {
   return (
     <SafeAreaView className="flex-1 bg-white items-center justify-between py-12 px-6">
       <View className="h-6" />
-      <Animated.View style={animatedStyle} className="items-center justify-center">
+      <Animated.View style={animatedStyle} className="flex-1 items-center justify-center">
         <Image
           source={require('@/assets/images/chargecheckout-logo.png')}
-          style={{ width: Math.min(width * 0.55, 180), height: 160 }}
+          style={{ width: 160, height: 120 }}
           contentFit="contain"
           priority="high"
         />
         <View className="flex-row items-center">
-          <Text className="text-4xl font-extrabold tracking-tight text-slate-900">
+          <Text className="text-4xl font-extrabold tracking-tight text-secondary">
             Charge
           </Text>
           <Text className="text-4xl font-extrabold tracking-tight text-primary">
@@ -56,17 +48,12 @@ export default function SplashScreenComponent() {
           </Text>
         </View>
         <Text className="text-slate-500 text-sm mt-1.5 font-medium tracking-wide text-center">
-          Fast EV Charging & Seamless Checkout
+          Powering Next-Gen EV Charging Operations
         </Text>
         <View className="mt-8">
           <ActivityIndicator size="large" color="#00D06C" />
         </View>
       </Animated.View>
-      <View className="items-center">
-        <Text className="text-xs text-slate-400 font-medium tracking-wide">
-          Secured by ChargeCheckout
-        </Text>
-      </View>
     </SafeAreaView>
   );
 }

@@ -2,6 +2,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import '../global.css';
+import { ToastContainer } from '@/components/Toast';
 
 // Keep the splash screen visible while assets load
 SplashScreen.preventAutoHideAsync().catch(() => {
@@ -20,6 +21,7 @@ export default function RootLayout() {
         }}>
         <Stack.Screen name="index" />
       </Stack>
+      <ToastContainer />
     </>
   );
 }
