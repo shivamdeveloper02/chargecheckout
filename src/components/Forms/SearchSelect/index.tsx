@@ -1,5 +1,6 @@
+import Icon from '@/components/Icon';
+import { Text } from '@/components/Reusable';
 import React, { useState } from 'react';
-import { Text } from '@/Reusable';
 import {
   Modal,
   Pressable,
@@ -10,7 +11,6 @@ import {
   ViewStyle,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Icon from '@/components/Icon';
 
 export interface SearchSelectOption {
   value: string | number;
@@ -119,10 +119,9 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
         className={`
           w-full py-3 px-3.5 bg-white border rounded-xl flex-row items-center justify-between
           ${disabled ? 'bg-slate-100 opacity-60' : 'active:bg-slate-50'}
-          ${
-            error
-              ? 'border-rose-500'
-              : isOpen
+          ${error
+            ? 'border-rose-500'
+            : isOpen
               ? 'border-blue-600'
               : 'border-slate-300'
           }
@@ -251,19 +250,17 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
                       <View className="flex-1 mr-2">
                         <View className="flex-row items-center gap-2">
                           <Text
-                            className={`text-xs ${
-                              isSelected
+                            className={`text-xs ${isSelected
                                 ? 'font-bold text-blue-800'
                                 : 'font-medium text-slate-800'
-                            }`}
+                              }`}
                           >
                             {opt.label}
                           </Text>
                           {opt.badge ? (
                             <View
-                              className={`px-1.5 py-0.5 rounded border ${
-                                opt.badgeColor || 'bg-slate-100 border-slate-200'
-                              }`}
+                              className={`px-1.5 py-0.5 rounded border ${opt.badgeColor || 'bg-slate-100 border-slate-200'
+                                }`}
                             >
                               <Text className="text-[10px] font-bold text-slate-600">
                                 {opt.badge}

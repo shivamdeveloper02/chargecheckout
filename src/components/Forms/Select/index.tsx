@@ -1,5 +1,5 @@
 import Icon from '@/components/Icon';
-import { Text } from '@/Reusable';
+import { Text } from '@/components/Reusable';
 import React, { useState } from 'react';
 import {
   Modal,
@@ -179,11 +179,10 @@ export const Select: React.FC<SelectProps> = ({
                     `}
                   >
                     <Text
-                      className={`text-xs ${
-                        isSelected
+                      className={`text-xs ${isSelected
                           ? 'font-bold text-blue-700'
                           : 'font-medium text-slate-800'
-                      }`}
+                        }`}
                     >
                       {opt.label}
                     </Text>

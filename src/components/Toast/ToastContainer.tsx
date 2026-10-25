@@ -1,10 +1,10 @@
-import React from 'react';
-import { Text } from '@/Reusable';
-import { View, Pressable, Platform } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '@/components/Icon';
-import { useToast } from './toastStore';
+import { Text } from '@/components/Reusable';
 import type { ToastType } from '@/types';
+import React from 'react';
+import { Platform, Pressable, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useToast } from './toastStore';
 
 export const ToastContainer: React.FC = () => {
   const { toasts, removeToast } = useToast();

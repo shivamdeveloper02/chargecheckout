@@ -1,5 +1,6 @@
+import Icon from '@/components/Icon';
+import { Text } from '@/components/Reusable';
 import React, { forwardRef, useState } from 'react';
-import { Text } from '@/Reusable';
 import {
   Pressable,
   StyleProp,
@@ -9,7 +10,6 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import Icon from '@/components/Icon';
 
 export interface DateSelectProps extends Omit<TextInputProps, 'style' | 'onChange'> {
   label?: string;
@@ -80,10 +80,9 @@ export const DateSelect = forwardRef<TextInput, DateSelectProps>(
           className={`
             w-full flex-row items-center bg-white border rounded-xl px-3.5
             ${disabled ? 'bg-slate-100 opacity-60' : ''}
-            ${
-              error
-                ? 'border-rose-500'
-                : isFocused
+            ${error
+              ? 'border-rose-500'
+              : isFocused
                 ? 'border-blue-600'
                 : 'border-slate-300'
             }

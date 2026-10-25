@@ -1,4 +1,4 @@
-import { ScreenProvider, Text } from '@/Reusable';
+import { ScreenProvider, Text } from '@/components/Reusable';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -9,7 +9,6 @@ import Animated, { Easing, useAnimatedStyle, useSharedValue, withSpring, withTim
 const Splash: React.FC = () => {
     const logoScale = useSharedValue(0.9);
     const logoOpacity = useSharedValue(0);
-
     useEffect(() => {
         // Hide the native splash screen as our component mounts
         const prepare = async () => {
@@ -20,14 +19,11 @@ const Splash: React.FC = () => {
             }
         };
         prepare();
-
         logoOpacity.value = withTiming(1, { duration: 600, easing: Easing.out(Easing.cubic) });
         logoScale.value = withSpring(1, { damping: 15, stiffness: 120 });
-
         const timer = setTimeout(() => {
             router.replace('/login');
         }, 1800);
-
         return () => clearTimeout(timer);
     }, []);
 
@@ -37,7 +33,7 @@ const Splash: React.FC = () => {
     }));
 
     return (
-        <ScreenProvider>
+        <ScreenProvider scrollable={false}>
             <Animated.View style={animatedStyle} className="flex-1 items-center justify-center">
                 <Image
                     source={require('@/assets/images/chargecheckout-logo.png')}

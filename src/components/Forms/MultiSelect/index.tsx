@@ -1,5 +1,6 @@
+import Icon from '@/components/Icon';
+import { Text } from '@/components/Reusable';
 import React, { useState } from 'react';
-import { Text } from '@/Reusable';
 import {
   Modal,
   Pressable,
@@ -10,7 +11,6 @@ import {
   ViewStyle,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Icon from '@/components/Icon';
 
 export interface MultiSelectOption {
   value: string;
@@ -114,10 +114,9 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
         className={`
           w-full min-h-[46px] py-2 px-3 bg-white border rounded-xl flex-row items-center justify-between
           ${disabled ? 'bg-slate-100 opacity-60' : 'active:bg-slate-50'}
-          ${
-            error
-              ? 'border-rose-500'
-              : isOpen
+          ${error
+            ? 'border-rose-500'
+            : isOpen
               ? 'border-blue-600'
               : 'border-slate-300'
           }
@@ -253,11 +252,10 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
                     >
                       <View className="flex-1 mr-2">
                         <Text
-                          className={`text-xs ${
-                            isSelected
+                          className={`text-xs ${isSelected
                               ? 'font-bold text-blue-800'
                               : 'font-medium text-slate-800'
-                          }`}
+                            }`}
                         >
                           {opt.label}
                         </Text>

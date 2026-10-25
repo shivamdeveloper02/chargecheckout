@@ -1,31 +1,24 @@
-import { Button } from '@/components/Button';
-import { Input } from '@/components/Forms/Input';
-import Icon from '@/components/Icon';
+import { Button, Icon } from '@/components';
+import { Input } from '@/components/Forms';
+import { ScreenProvider, Text } from '@/components/Reusable';
 import { toast } from '@/components/Toast';
+import { EMAIL_REGEX } from '@/utils';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
-import { useState } from 'react';
-import { Text } from '@/Reusable';
-import {
-  KeyboardAvoidingView,
-  Platform,
-  Pressable,
-  ScrollView,
-  View,
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React, { useState } from 'react';
+import { Pressable, View } from 'react-native';
 
-export default function LoginScreen() {
+const LoginScreen: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [errors, setErrors] = useState<{ email?: string; password?: string; }>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const validate = () => {
-    const newErrors: { email?: string; password?: string } = {};
+  const validate = (): boolean => {
+    const newErrors: typeof errors = {};
     if (!email.trim()) {
       newErrors.email = 'Email address is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    } else if (!EMAIL_REGEX.test(email.trim())) {
       newErrors.email = 'Please enter a valid email address';
     }
     if (!password) {
@@ -37,115 +30,147 @@ export default function LoginScreen() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleLogin = () => {
-    if (!validate()) return;
+  const handleLogin = async () => {
+    if (isLoading || !validate()) return;
     setIsLoading(true);
-    // Simulate instant local authentication without API call
-    setTimeout(() => {
+    try {
+      // TODO: Replace with your authentication API.
+      // This is currently a local demonstration, not real authentication.
+      await new Promise((resolve) => setTimeout(resolve, 600));
+      toast.success(
+        'Welcome back to ChargeCheckout!',
+        'Signed In'
+      );
+      // router.replace('/onboarding');
+    } catch {
+      toast.error('Unable to sign in. Please try again.', 'Login Failed');
+    } finally {
       setIsLoading(false);
-      toast.success('Welcome back to ChargeCheckout!', 'Signed In');
-      router.replace('/onboarding');
-    }, 600);
+    }
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        className="flex-1"
-      >
-        <ScrollView
-          contentContainerStyle={{ flexGrow: 1 }}
-          keyboardShouldPersistTaps="handled"
-          showsVerticalScrollIndicator={false}
-          className="px-6 py-6"
-        >
-          {/* Logo & Header */}
-          <View className="flex-1 items-center justify-center">
-            <Image
-              source={require('@/assets/images/chargecheckout-logo.png')}
-              style={{ width: 140, height: 95 }}
-              contentFit="contain"
-              priority="high"
-            />
-            <View className="flex-row items-center mt-2">
-              <Text className="text-3xl font-extrabold tracking-tight text-secondary">
-                Charge
-              </Text>
-              <Text className="text-3xl font-extrabold tracking-tight text-primary">
-                Checkout
-              </Text>
-            </View>
-            <Text className="text-slate-500 text-sm mt-1 font-medium text-center">
-              Sign in to manage your EV charging & checkout
+    <ScreenProvider
+      className="flex-1 bg-white px-6"
+      contentContainerClassName="flex-grow"
+      keyboardAvoiding
+    >
+      <View className="flex-grow justify-center py-6">
+        <View className="items-center">
+          <Image
+            source={require('@/assets/images/chargecheckout-logo.png')}
+            style={{ width: 140, height: 95 }}
+            contentFit="contain"
+            priority="high"
+          />
+          <View className="mt-2 flex-row items-center">
+            <Text className="text-3xl tracking-wider text-secondary">
+              Charge
+            </Text>
+            <Text className="text-3xl tracking-wider text-primary">
+              Checkout
             </Text>
           </View>
-          <View className="space-y-4 gap-4">
+          <Text className="mt-2 text-center text-sm leading-5 text-slate-500">
+            Sign in to manage your EV charging & checkout
+          </Text>
+        </View>
+        <View className="mt-8 gap-4">
+          <Input
+            label="Email Address"
+            placeholder="name@example.com"
+            type="email"
+            autoCapitalize="none"
+            keyboardType="email-address"
+            autoComplete="email"
+            value={email}
+            onChangeText={(value) => {
+              setEmail(value);
+              setErrors((previous) => ({
+                ...previous,
+                email: undefined,
+              }));
+            }}
+            error={errors.email}
+            leftIcon={
+              <Icon
+                name="mail-outline"
+                size={18}
+                color="#94A3B8"
+              />
+            }
+            required
+          />
+          <View>
             <Input
-              label="Email Address"
-              placeholder="name@example.com"
-              type="email"
+              label="Password"
+              placeholder="Enter your password"
+              type="password"
               autoCapitalize="none"
-              keyboardType="email-address"
-              autoComplete="email"
-              value={email}
-              onChangeText={(text) => {
-                setEmail(text);
-                if (errors.email) setErrors((prev) => ({ ...prev, email: undefined }));
+              autoComplete="current-password"
+              value={password}
+              onChangeText={(value) => {
+                setPassword(value);
+                setErrors((previous) => ({
+                  ...previous,
+                  password: undefined,
+                }));
               }}
-              error={errors.email}
-              leftIcon={<Icon name="mail-outline" size={18} color="#94A3B8" />}
-              clearable
-              onClear={() => setEmail('')}
+              error={errors.password}
+              leftIcon={
+                <Icon
+                  name="lock-closed-outline"
+                  size={18}
+                  color="#94A3B8"
+                />
+              }
               required
             />
-            <View>
-              <Input
-                label="Password"
-                placeholder="Enter your password"
-                type="password"
-                autoCapitalize="none"
-                value={password}
-                onChangeText={(text) => {
-                  setPassword(text);
-                  if (errors.password) setErrors((prev) => ({ ...prev, password: undefined }));
-                }}
-                error={errors.password}
-                leftIcon={<Icon name="lock-closed-outline" size={18} color="#94A3B8" />}
-                required
-              />
-
-              {/* Forgot Password Link */}
-              <View className="items-end mt-2">
-                <Pressable
-                  onPress={() => router.push('/forgot-password')}
-                  hitSlop={8}
-                >
-                  <Text className="text-xs font-semibold text-[#0A3D91]">
-                    Forgot Password?
-                  </Text>
-                </Pressable>
-              </View>
-            </View>
-            <View className="pt-4">
-              <Button
-                variant="primary"
-                size="lg"
-                fullWidth
-                isLoading={isLoading}
-                onPress={handleLogin}
+            <View className="mt-3 items-end">
+              <Pressable
+                onPress={() => router.push('/forgot-password')}
+                hitSlop={8}
               >
-                Sign In
-              </Button>
+                <Text className="text-xs font-semibold text-[#0A3D91]">
+                  Forgot Password?
+                </Text>
+              </Pressable>
             </View>
           </View>
-          <View className="flex-1 justify-end items-center mt-12 pb-4">
-            <Text className="text-sm text-slate-400 font-medium">
-              Powering Next-Gen EV Charging Operations
-            </Text>
+          <View className="mt-2">
+            <Button
+              variant="primary"
+              size="lg"
+              fullWidth
+              isLoading={isLoading}
+              onPress={handleLogin}
+            >
+              Sign In
+            </Button>
           </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+          <View className="mt-2 flex-row flex-wrap items-center justify-center">
+            <Text className="text-sm text-slate-500">
+              Don't have an account?{' '}
+            </Text>
+
+            <Pressable
+              onPress={() => router.push('/signup')}
+              hitSlop={8}
+            >
+              <Text className="text-sm font-semibold text-[#0A3D91]">
+                Sign Up
+              </Text>
+            </Pressable>
+          </View>
+        </View>
+      </View>
+      <View className="items-center pb-4 pt-6">
+        <Text className="text-center text-xs leading-5 text-slate-400">
+          Powering Next-Gen EV Charging Operations
+        </Text>
+      </View>
+    </ScreenProvider>
   );
-}
+};
+
+export default LoginScreen;

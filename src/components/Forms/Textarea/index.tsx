@@ -1,5 +1,5 @@
 import Icon from '@/components/Icon';
-import { Text } from '@/Reusable';
+import { Text } from '@/components/Reusable';
 import { forwardRef, useState } from 'react';
 import {
   StyleProp,

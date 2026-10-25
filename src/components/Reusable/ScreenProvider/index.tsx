@@ -40,23 +40,12 @@ const ScreenProvider: React.FC<ScreenProviderProps> = ({
     keyboardAvoiding = true,
     dismissKeyboardOnPress = true,
     scrollable = false,
-    className = 'flex-1 bg-white',
+    className = 'flex-1 bg-white px-5',
     contentContainerClassName = 'flex-grow',
     backgroundColor = '#FFFFFF',
     style,
 }) => {
     const Container = safeArea ? SafeAreaView : View;
-
-    const content = scrollable ? (
-        <ScrollView
-            className="flex-1"
-            contentContainerClassName={contentContainerClassName}
-            keyboardShouldPersistTaps="handled"
-            showsVerticalScrollIndicator={false}
-        >
-            {children}
-        </ScrollView>
-    ) : (children);
 
     return (
         <View className="flex-1" style={{ backgroundColor }}>
@@ -66,6 +55,7 @@ const ScreenProvider: React.FC<ScreenProviderProps> = ({
                 hidden={hiddenStatusBar}
                 translucent={translucentStatusBar}
             />
+
             <Container
                 {...(safeArea ? { edges } : {})}
                 className={className}
@@ -74,24 +64,32 @@ const ScreenProvider: React.FC<ScreenProviderProps> = ({
                 <KeyboardAvoidingView
                     className="flex-1"
                     behavior={
-                        keyboardAvoiding
-                            ? Platform.OS === 'ios'
-                                ? 'padding'
-                                : undefined
+                        keyboardAvoiding && Platform.OS === 'ios'
+                            ? 'padding'
                             : undefined
                     }
                     enabled={keyboardAvoiding}
                 >
-                    {dismissKeyboardOnPress ? (
-                        <Pressable
+                    {scrollable ? (
+                        <ScrollView
                             className="flex-1"
-                            onPress={Keyboard.dismiss}
-                            accessible={false}
+                            contentContainerClassName={contentContainerClassName}
+                            keyboardShouldPersistTaps="handled"
+                            showsVerticalScrollIndicator={false}
+                            automaticallyAdjustKeyboardInsets={Platform.OS === 'ios'}
                         >
-                            {content}
-                        </Pressable>
+                            {children}
+                        </ScrollView>
                     ) : (
-                        content
+                        children
+                    )}
+
+                    {dismissKeyboardOnPress && !scrollable && (
+                        <Pressable
+                            onPress={Keyboard.dismiss}
+                            className="absolute bottom-0 right-0 h-0 w-0"
+                            accessible={false}
+                        />
                     )}
                 </KeyboardAvoidingView>
             </Container>

@@ -1,4 +1,4 @@
-import { Text } from '@/Reusable';
+import { Text } from '@/components/Reusable';
 import { forwardRef } from 'react';
 import {
   ActivityIndicator,

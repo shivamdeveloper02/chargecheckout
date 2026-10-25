@@ -1,5 +1,5 @@
+import { Text } from '@/components/Reusable';
 import React from 'react';
-import { Text } from '@/Reusable';
 import {
   Platform,
   Pressable,

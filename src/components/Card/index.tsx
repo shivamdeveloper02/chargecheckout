@@ -1,5 +1,5 @@
+import { Text } from '@/components/Reusable';
 import React from 'react';
-import { Text } from '@/Reusable';
 import { StyleProp, TextStyle, View, ViewProps, ViewStyle } from 'react-native';
 
 export type CardVariant = 'default' | 'flat' | 'outline' | 'ghost' | 'none';
@@ -63,9 +63,8 @@ const CardRoot: React.FC<CardProps> = ({
   return (
     <View
       style={style}
-      className={`rounded-2xl ${variantStyles[variant] || variantStyles.default} ${
-        noPadding ? '' : 'p-4'
-      } ${className}`}
+      className={`rounded-2xl ${variantStyles[variant] || variantStyles.default} ${noPadding ? '' : 'p-4'
+        } ${className}`}
       {...props}
     >
       {children}

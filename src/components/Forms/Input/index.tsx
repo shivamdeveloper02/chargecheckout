@@ -1,5 +1,5 @@
 import Icon from '@/components/Icon';
-import { Text } from '@/Reusable';
+import { Text } from '@/components/Reusable';
 import React, { forwardRef, useState } from 'react';
 import {
   KeyboardTypeOptions,
@@ -135,7 +135,7 @@ export const Input = forwardRef<TextInput, InputProps>(
                 color="#94A3B8"
               />
             </Pressable>
-          ) }
+          )}
         </View>
 
         {error ? (

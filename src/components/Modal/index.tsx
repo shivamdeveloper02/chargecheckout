@@ -1,10 +1,11 @@
+import Icon from '@/components/Icon';
+import { Text } from '@/components/Reusable';
 import React, { createContext, useContext } from 'react';
-import { Text } from '@/Reusable';
 import {
   KeyboardAvoidingView,
-  Modal as RNModal,
   Platform,
   Pressable,
+  Modal as RNModal,
   ScrollView,
   StyleProp,
   TextStyle,
@@ -13,7 +14,6 @@ import {
   ViewStyle,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Icon from '@/components/Icon';
 
 interface ModalContextType {
   onClose: () => void;
@@ -107,9 +107,8 @@ const ModalRoot: React.FC<ModalProps> = ({
               paddingTop: isTop ? insets.top + 20 : insets.top,
               paddingBottom: insets.bottom + 16,
             }}
-            className={`flex-1 justify-center items-center px-4 ${
-              isTop ? 'justify-start' : 'justify-center'
-            }`}
+            className={`flex-1 justify-center items-center px-4 ${isTop ? 'justify-start' : 'justify-center'
+              }`}
           >
             {/* Backdrop Overlay */}
             <Pressable
