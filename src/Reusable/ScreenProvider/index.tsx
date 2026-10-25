@@ -1,0 +1,102 @@
+import React from 'react';
+import {
+    Keyboard,
+    KeyboardAvoidingView,
+    Platform,
+    Pressable,
+    ScrollView,
+    StatusBar,
+    View,
+    type StatusBarStyle,
+    type ViewStyle,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+interface ScreenProviderProps {
+    children: React.ReactNode;
+    statusBarStyle?: StatusBarStyle;
+    statusBarBackgroundColor?: string;
+    hiddenStatusBar?: boolean;
+    translucentStatusBar?: boolean;
+    safeArea?: boolean;
+    edges?: Array<'top' | 'bottom' | 'left' | 'right'>;
+    keyboardAvoiding?: boolean;
+    dismissKeyboardOnPress?: boolean;
+    scrollable?: boolean;
+    className?: string;
+    contentContainerClassName?: string;
+    backgroundColor?: string;
+    style?: ViewStyle;
+}
+
+const ScreenProvider: React.FC<ScreenProviderProps> = ({
+    children,
+    statusBarStyle = 'dark-content',
+    statusBarBackgroundColor = '#FFFFFF',
+    hiddenStatusBar = false,
+    translucentStatusBar = false,
+    safeArea = true,
+    edges = ['top', 'bottom'],
+    keyboardAvoiding = true,
+    dismissKeyboardOnPress = true,
+    scrollable = false,
+    className = 'flex-1 bg-white',
+    contentContainerClassName = 'flex-grow',
+    backgroundColor = '#FFFFFF',
+    style,
+}) => {
+    const Container = safeArea ? SafeAreaView : View;
+
+    const content = scrollable ? (
+        <ScrollView
+            className="flex-1"
+            contentContainerClassName={contentContainerClassName}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+        >
+            {children}
+        </ScrollView>
+    ) : (children);
+
+    return (
+        <View className="flex-1" style={{ backgroundColor }}>
+            <StatusBar
+                barStyle={statusBarStyle}
+                backgroundColor={statusBarBackgroundColor}
+                hidden={hiddenStatusBar}
+                translucent={translucentStatusBar}
+            />
+            <Container
+                {...(safeArea ? { edges } : {})}
+                className={className}
+                style={style}
+            >
+                <KeyboardAvoidingView
+                    className="flex-1"
+                    behavior={
+                        keyboardAvoiding
+                            ? Platform.OS === 'ios'
+                                ? 'padding'
+                                : undefined
+                            : undefined
+                    }
+                    enabled={keyboardAvoiding}
+                >
+                    {dismissKeyboardOnPress ? (
+                        <Pressable
+                            className="flex-1"
+                            onPress={Keyboard.dismiss}
+                            accessible={false}
+                        >
+                            {content}
+                        </Pressable>
+                    ) : (
+                        content
+                    )}
+                </KeyboardAvoidingView>
+            </Container>
+        </View>
+    );
+};
+
+export default ScreenProvider;
