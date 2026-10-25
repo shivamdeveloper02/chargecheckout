@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleProp, Text, TextStyle, View, ViewProps, ViewStyle } from 'react-native';
+import { Text } from '@/Reusable';
+import { StyleProp, TextStyle, View, ViewProps, ViewStyle } from 'react-native';
 
 export type CardVariant = 'default' | 'flat' | 'outline' | 'ghost' | 'none';
 

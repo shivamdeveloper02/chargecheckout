@@ -1,5 +1,6 @@
 import React from 'react';
-import { Pressable, StyleProp, Text, TextStyle, View, ViewStyle } from 'react-native';
+import { Text } from '@/Reusable';
+import { Pressable, StyleProp, TextStyle, View, ViewStyle } from 'react-native';
 import Icon from '@/components/Icon';
 
 export interface CheckboxProps {

@@ -1,4 +1,5 @@
 import React, { createContext, useContext } from 'react';
+import { Text } from '@/Reusable';
 import {
   KeyboardAvoidingView,
   Modal as RNModal,
@@ -6,7 +7,6 @@ import {
   Pressable,
   ScrollView,
   StyleProp,
-  Text,
   TextStyle,
   View,
   ViewProps,

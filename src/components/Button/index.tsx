@@ -1,11 +1,11 @@
-import React, { forwardRef } from 'react';
+import { Text } from '@/Reusable';
+import { forwardRef } from 'react';
 import {
   ActivityIndicator,
   GestureResponderEvent,
   Pressable,
   PressableProps,
   StyleProp,
-  Text,
   TextStyle,
   View,
   ViewStyle,

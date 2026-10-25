@@ -1,10 +1,10 @@
 import Icon from '@/components/Icon';
+import { Text } from '@/Reusable';
 import React, { forwardRef, useState } from 'react';
 import {
   KeyboardTypeOptions,
   Pressable,
   StyleProp,
-  Text,
   TextInput,
   TextInputProps,
   TextStyle,
@@ -118,7 +118,7 @@ export const Input = forwardRef<TextInput, InputProps>(
             secureTextEntry={isPassword && !showPassword}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            style={style}
+            style={[{ fontFamily: 'Poppins-Regular' }, style]}
             className={`flex-1 py-3 text-xs text-slate-900 ${className}`}
             {...rest}
           />

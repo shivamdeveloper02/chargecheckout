@@ -5,12 +5,12 @@ import { toast } from '@/components/Toast';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { useState } from 'react';
+import { Text } from '@/Reusable';
 import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
   ScrollView,
-  Text,
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';

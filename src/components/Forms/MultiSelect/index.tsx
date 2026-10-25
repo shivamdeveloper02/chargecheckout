@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { Text } from '@/Reusable';
 import {
   Modal,
   Pressable,
   ScrollView,
   StyleProp,
-  Text,
   TextInput,
   View,
   ViewStyle,
@@ -209,6 +209,7 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
                     onChangeText={setSearchQuery}
                     placeholder="Search options..."
                     placeholderTextColor="#94A3B8"
+                    style={{ fontFamily: 'Poppins-Regular' }}
                     className="flex-1 ml-2 text-xs text-slate-900"
                   />
                   {searchQuery ? (

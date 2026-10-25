@@ -1,8 +1,8 @@
 import Icon from '@/components/Icon';
+import { Text } from '@/Reusable';
 import { forwardRef, useState } from 'react';
 import {
   StyleProp,
-  Text,
   TextInput,
   TextInputProps,
   TextStyle,
@@ -106,7 +106,7 @@ export const Textarea = forwardRef<TextInput, TextareaProps>(
             placeholderTextColor="#94A3B8"
             onFocus={handleFocus}
             onBlur={handleBlur}
-            style={[{ minHeight: rows * 22 }, style]}
+            style={[{ minHeight: rows * 22, fontFamily: 'Poppins-Regular' }, style]}
             className={`text-xs text-slate-900 ${className}`}
             {...rest}
           />

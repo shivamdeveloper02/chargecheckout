@@ -1,8 +1,8 @@
 import React, { forwardRef, useState } from 'react';
+import { Text } from '@/Reusable';
 import {
   Pressable,
   StyleProp,
-  Text,
   TextInput,
   TextInputProps,
   TextStyle,
@@ -102,7 +102,7 @@ export const DateSelect = forwardRef<TextInput, DateSelectProps>(
             editable={!disabled}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            style={style}
+            style={[{ fontFamily: 'Poppins-Regular' }, style]}
             className={`flex-1 py-3 text-xs text-slate-900 ${className}`}
             {...rest}
           />

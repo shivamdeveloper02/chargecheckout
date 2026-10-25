@@ -1,9 +1,9 @@
-import { ScreenProvider } from '@/Reusable';
+import { ScreenProvider, Text } from '@/Reusable';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-import { ActivityIndicator, Text, View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 
 const Splash: React.FC = () => {
@@ -45,15 +45,15 @@ const Splash: React.FC = () => {
                     contentFit="contain"
                     priority="high"
                 />
-                <View className="flex-row items-center">
-                    <Text className="text-4xl font-extrabold tracking-tight text-secondary">
+                <View className="flex-row items-center pb-2">
+                    <Text className="text-4xl text-secondary tracking-wider">
                         Charge
                     </Text>
-                    <Text className="text-4xl font-extrabold tracking-tight text-primary">
+                    <Text className="text-4xl text-primary tracking-wider">
                         Checkout
                     </Text>
                 </View>
-                <Text className="text-slate-500 text-sm mt-1.5 font-medium tracking-wide text-center">
+                <Text className="text-slate-500 text-sm tracking-wider text-center">
                     Powering Next-Gen EV Charging Operations
                 </Text>
                 <View className="mt-8">

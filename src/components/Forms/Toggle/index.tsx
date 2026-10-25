@@ -1,10 +1,10 @@
 import React from 'react';
+import { Text } from '@/Reusable';
 import {
   Platform,
   Pressable,
   StyleProp,
   Switch,
-  Text,
   TextStyle,
   View,
   ViewStyle,

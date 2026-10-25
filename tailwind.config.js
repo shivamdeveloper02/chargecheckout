@@ -1,9 +1,24 @@
+const plugin = require('tailwindcss/plugin');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Poppins-Regular", "sans-serif"],
+        poppins: ["Poppins-Regular", "sans-serif"],
+        "poppins-thin": ["Poppins-Thin"],
+        "poppins-extralight": ["Poppins-ExtraLight"],
+        "poppins-light": ["Poppins-Light"],
+        "poppins-regular": ["Poppins-Regular"],
+        "poppins-medium": ["Poppins-Medium"],
+        "poppins-semibold": ["Poppins-SemiBold"],
+        "poppins-bold": ["Poppins-Bold"],
+        "poppins-extrabold": ["Poppins-ExtraBold"],
+        "poppins-black": ["Poppins-Black"],
+      },
       colors: {
         primary: {
           50: "#E8FAF1",
@@ -45,5 +60,19 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.font-thin': { fontFamily: 'Poppins-Thin', fontWeight: '100' },
+        '.font-extralight': { fontFamily: 'Poppins-ExtraLight', fontWeight: '200' },
+        '.font-light': { fontFamily: 'Poppins-Light', fontWeight: '300' },
+        '.font-normal': { fontFamily: 'Poppins-Regular', fontWeight: '400' },
+        '.font-medium': { fontFamily: 'Poppins-Medium', fontWeight: '500' },
+        '.font-semibold': { fontFamily: 'Poppins-SemiBold', fontWeight: '600' },
+        '.font-bold': { fontFamily: 'Poppins-Bold', fontWeight: '700' },
+        '.font-extrabold': { fontFamily: 'Poppins-ExtraBold', fontWeight: '800' },
+        '.font-black': { fontFamily: 'Poppins-Black', fontWeight: '900' },
+      });
+    }),
+  ],
 };

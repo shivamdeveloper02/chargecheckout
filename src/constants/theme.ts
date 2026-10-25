@@ -68,22 +68,34 @@ export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
 
 export const Fonts = Platform.select({
   ios: {
-    sans: 'system-ui',
-    serif: 'ui-serif',
-    rounded: 'ui-rounded',
+    sans: 'Poppins-Regular',
+    serif: 'serif',
+    rounded: 'Poppins-Regular',
     mono: 'ui-monospace',
+    medium: 'Poppins-Medium',
+    semibold: 'Poppins-SemiBold',
+    bold: 'Poppins-Bold',
+    extrabold: 'Poppins-ExtraBold',
   },
   default: {
-    sans: 'normal',
+    sans: 'Poppins-Regular',
     serif: 'serif',
-    rounded: 'normal',
+    rounded: 'Poppins-Regular',
     mono: 'monospace',
+    medium: 'Poppins-Medium',
+    semibold: 'Poppins-SemiBold',
+    bold: 'Poppins-Bold',
+    extrabold: 'Poppins-ExtraBold',
   },
   web: {
-    sans: 'var(--font-display, system-ui, sans-serif)',
-    serif: 'var(--font-serif, serif)',
-    rounded: 'var(--font-rounded, sans-serif)',
+    sans: 'Poppins, system-ui, sans-serif',
+    serif: 'serif',
+    rounded: 'Poppins, sans-serif',
     mono: 'var(--font-mono, monospace)',
+    medium: 'Poppins-Medium, Poppins, sans-serif',
+    semibold: 'Poppins-SemiBold, Poppins, sans-serif',
+    bold: 'Poppins-Bold, Poppins, sans-serif',
+    extrabold: 'Poppins-ExtraBold, Poppins, sans-serif',
   },
 });
 

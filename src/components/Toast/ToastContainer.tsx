@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Pressable, Platform } from 'react-native';
+import { Text } from '@/Reusable';
+import { View, Pressable, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '@/components/Icon';
 import { useToast } from './toastStore';

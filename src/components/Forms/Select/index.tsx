@@ -1,11 +1,11 @@
 import Icon from '@/components/Icon';
+import { Text } from '@/Reusable';
 import React, { useState } from 'react';
 import {
   Modal,
   Pressable,
   ScrollView,
   StyleProp,
-  Text,
   TextStyle,
   View,
   ViewStyle,
