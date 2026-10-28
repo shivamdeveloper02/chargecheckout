@@ -87,7 +87,7 @@ export const Input = forwardRef<TextInput, InputProps>(
       >
         {label ? (
           <View className="flex-row items-center mb-1.5">
-            <Text className="text-xs font-bold text-slate-700">{label}</Text>
+            <Text className="text-sm text-slate-700">{label}</Text>
             {required ? <Text className="text-rose-500 ml-0.5 font-bold">*</Text> : null}
           </View>
         ) : null}
@@ -119,7 +119,7 @@ export const Input = forwardRef<TextInput, InputProps>(
             onFocus={handleFocus}
             onBlur={handleBlur}
             style={[{ fontFamily: 'Poppins-Regular' }, style]}
-            className={`flex-1 py-3 text-xs text-slate-900 ${className}`}
+            className={`flex-1 py-2.5 text-sm text-slate-900 ${className}`}
             {...rest}
           />
           {isPassword && (

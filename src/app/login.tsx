@@ -41,7 +41,7 @@ const LoginScreen: React.FC = () => {
         'Welcome back to ChargeCheckout!',
         'Signed In'
       );
-      // router.replace('/onboarding');
+      router.replace('/(tabs)');
     } catch {
       toast.error('Unable to sign in. Please try again.', 'Login Failed');
     } finally {
@@ -163,11 +163,6 @@ const LoginScreen: React.FC = () => {
             </Pressable>
           </View>
         </View>
-      </View>
-      <View className="items-center pb-4 pt-6">
-        <Text className="text-center text-xs leading-5 text-slate-400">
-          Powering Next-Gen EV Charging Operations
-        </Text>
       </View>
     </ScreenProvider>
   );

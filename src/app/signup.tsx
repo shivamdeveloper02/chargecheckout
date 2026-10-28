@@ -221,11 +221,6 @@ const SignUpScreen: React.FC = () => {
                     </View>
                 </View>
             </View>
-            <View className="items-center pb-4 pt-6">
-                <Text className="text-center text-xs leading-5 text-slate-400">
-                    Powering Next-Gen EV Charging Operations
-                </Text>
-            </View>
         </ScreenProvider>
     );
 };
