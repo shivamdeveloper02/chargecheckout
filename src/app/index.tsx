@@ -22,7 +22,7 @@ const Splash: React.FC = () => {
         logoOpacity.value = withTiming(1, { duration: 600, easing: Easing.out(Easing.cubic) });
         logoScale.value = withSpring(1, { damping: 15, stiffness: 120 });
         const timer = setTimeout(() => {
-            router.replace('/login');
+            router.replace('/(tabs)');
         }, 1800);
         return () => clearTimeout(timer);
     }, []);
@@ -33,7 +33,7 @@ const Splash: React.FC = () => {
     }));
 
     return (
-        <ScreenProvider scrollable={false}>
+        <ScreenProvider scrollable={false} className='flex-1 bg-white px-5'>
             <Animated.View style={animatedStyle} className="flex-1 items-center justify-center">
                 <Image
                     source={require('@/assets/images/chargecheckout-logo.png')}

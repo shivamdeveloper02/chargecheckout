@@ -40,7 +40,7 @@ const ScreenProvider: React.FC<ScreenProviderProps> = ({
     keyboardAvoiding = true,
     dismissKeyboardOnPress = true,
     scrollable = false,
-    className = 'flex-1 bg-white px-5',
+    className = 'flex-1 bg-white',
     contentContainerClassName = 'flex-grow',
     backgroundColor = '#FFFFFF',
     style,

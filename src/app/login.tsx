@@ -51,7 +51,7 @@ const LoginScreen: React.FC = () => {
 
   return (
     <ScreenProvider
-      className="flex-1 bg-white px-6"
+      className='flex-1 bg-white px-5'
       contentContainerClassName="flex-grow"
       keyboardAvoiding
     >

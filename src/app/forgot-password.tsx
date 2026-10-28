@@ -56,7 +56,7 @@ const ForgotPassword: React.FC = () => {
   };
 
   return (
-    <ScreenProvider>
+    <ScreenProvider className = 'flex-1 bg-white px-5'>
       <View className="flex-grow py-6">
         <View className="flex-row items-center justify-between mb-6">
           <Pressable
