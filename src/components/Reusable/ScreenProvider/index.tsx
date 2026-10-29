@@ -11,6 +11,7 @@ import {
     type ViewStyle,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import LoadingScreen from '../LoadingScreen';
 
 interface ScreenProviderProps {
     children: React.ReactNode;
@@ -27,6 +28,8 @@ interface ScreenProviderProps {
     contentContainerClassName?: string;
     backgroundColor?: string;
     style?: ViewStyle;
+    isLoading?: boolean;
+    loadingMessage?: string;
 }
 
 const ScreenProvider: React.FC<ScreenProviderProps> = ({
@@ -44,14 +47,16 @@ const ScreenProvider: React.FC<ScreenProviderProps> = ({
     contentContainerClassName = 'flex-grow',
     backgroundColor = '#FFFFFF',
     style,
+    isLoading = false,
+    loadingMessage,
 }) => {
     const Container = safeArea ? SafeAreaView : View;
 
     return (
-        <View className="flex-1" style={{ backgroundColor }}>
+        <View className="flex-1" style={{ backgroundColor: isLoading ? '#FFFFFF' : backgroundColor }}>
             <StatusBar
-                barStyle={statusBarStyle}
-                backgroundColor={statusBarBackgroundColor}
+                barStyle={isLoading ? 'dark-content' : statusBarStyle}
+                backgroundColor={isLoading ? '#FFFFFF' : statusBarBackgroundColor}
                 hidden={hiddenStatusBar}
                 translucent={translucentStatusBar}
             />
@@ -61,37 +66,41 @@ const ScreenProvider: React.FC<ScreenProviderProps> = ({
                 className={className}
                 style={style}
             >
-                <KeyboardAvoidingView
-                    className="flex-1"
-                    behavior={
-                        keyboardAvoiding && Platform.OS === 'ios'
-                            ? 'padding'
-                            : undefined
-                    }
-                    enabled={keyboardAvoiding}
-                >
-                    {scrollable ? (
-                        <ScrollView
-                            className="flex-1"
-                            contentContainerClassName={contentContainerClassName}
-                            keyboardShouldPersistTaps="handled"
-                            showsVerticalScrollIndicator={false}
-                            automaticallyAdjustKeyboardInsets={Platform.OS === 'ios'}
-                        >
-                            {children}
-                        </ScrollView>
-                    ) : (
-                        children
-                    )}
+                {isLoading ? (
+                    <LoadingScreen message={loadingMessage} />
+                ) : (
+                    <KeyboardAvoidingView
+                        className="flex-1"
+                        behavior={
+                            keyboardAvoiding && Platform.OS === 'ios'
+                                ? 'padding'
+                                : undefined
+                        }
+                        enabled={keyboardAvoiding}
+                    >
+                        {scrollable ? (
+                            <ScrollView
+                                className="flex-1"
+                                contentContainerClassName={contentContainerClassName}
+                                keyboardShouldPersistTaps="handled"
+                                showsVerticalScrollIndicator={false}
+                                automaticallyAdjustKeyboardInsets={Platform.OS === 'ios'}
+                            >
+                                {children}
+                            </ScrollView>
+                        ) : (
+                            children
+                        )}
 
-                    {dismissKeyboardOnPress && !scrollable && (
-                        <Pressable
-                            onPress={Keyboard.dismiss}
-                            className="absolute bottom-0 right-0 h-0 w-0"
-                            accessible={false}
-                        />
-                    )}
-                </KeyboardAvoidingView>
+                        {dismissKeyboardOnPress && !scrollable && (
+                            <Pressable
+                                onPress={Keyboard.dismiss}
+                                className="absolute bottom-0 right-0 h-0 w-0"
+                                accessible={false}
+                            />
+                        )}
+                    </KeyboardAvoidingView>
+                )}
             </Container>
         </View>
     );
