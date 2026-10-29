@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Keyboard,
     KeyboardAvoidingView,
@@ -22,8 +22,10 @@ interface ScreenProviderProps {
     safeArea?: boolean;
     edges?: Array<'top' | 'bottom' | 'left' | 'right'>;
     keyboardAvoiding?: boolean;
+    keyboardVerticalOffset?: number;
     dismissKeyboardOnPress?: boolean;
     scrollable?: boolean;
+    bounces?: boolean;
     className?: string;
     contentContainerClassName?: string;
     backgroundColor?: string;
@@ -41,8 +43,10 @@ const ScreenProvider: React.FC<ScreenProviderProps> = ({
     safeArea = true,
     edges = ['top', 'bottom'],
     keyboardAvoiding = true,
+    keyboardVerticalOffset = 0,
     dismissKeyboardOnPress = true,
     scrollable = false,
+    bounces = false,
     className = 'flex-1 bg-white',
     contentContainerClassName = 'flex-grow',
     backgroundColor = '#FFFFFF',
@@ -50,7 +54,35 @@ const ScreenProvider: React.FC<ScreenProviderProps> = ({
     isLoading = false,
     loadingMessage,
 }) => {
+    const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
+
+    useEffect(() => {
+        const showEvent = Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
+        const hideEvent = Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
+        const showSubscription = Keyboard.addListener(showEvent, () => {
+            setIsKeyboardVisible(true);
+        });
+        const hideSubscription = Keyboard.addListener(hideEvent, () => {
+            setIsKeyboardVisible(false);
+        });
+        return () => {
+            showSubscription.remove();
+            hideSubscription.remove();
+        };
+    }, []);
+
     const Container = safeArea ? SafeAreaView : View;
+
+    const content = (
+        <Pressable
+            className="flex-1"
+            disabled={!dismissKeyboardOnPress || !isKeyboardVisible}
+            onPress={Keyboard.dismiss}
+            accessible={false}
+        >
+            {children}
+        </Pressable>
+    );
 
     return (
         <View className="flex-1" style={{ backgroundColor: isLoading ? '#FFFFFF' : backgroundColor }}>
@@ -72,32 +104,30 @@ const ScreenProvider: React.FC<ScreenProviderProps> = ({
                     <KeyboardAvoidingView
                         className="flex-1"
                         behavior={
-                            keyboardAvoiding && Platform.OS === 'ios'
-                                ? 'padding'
+                            keyboardAvoiding
+                                ? Platform.OS === 'ios'
+                                    ? 'padding'
+                                    : isKeyboardVisible
+                                        ? 'padding'
+                                        : undefined
                                 : undefined
                         }
                         enabled={keyboardAvoiding}
+                        keyboardVerticalOffset={keyboardVerticalOffset}
                     >
                         {scrollable ? (
                             <ScrollView
                                 className="flex-1"
                                 contentContainerClassName={contentContainerClassName}
                                 keyboardShouldPersistTaps="handled"
+                                keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
                                 showsVerticalScrollIndicator={false}
-                                automaticallyAdjustKeyboardInsets={Platform.OS === 'ios'}
+                                bounces={bounces}
                             >
-                                {children}
+                                {content}
                             </ScrollView>
                         ) : (
-                            children
-                        )}
-
-                        {dismissKeyboardOnPress && !scrollable && (
-                            <Pressable
-                                onPress={Keyboard.dismiss}
-                                className="absolute bottom-0 right-0 h-0 w-0"
-                                accessible={false}
-                            />
+                            content
                         )}
                     </KeyboardAvoidingView>
                 )}
