@@ -79,6 +79,7 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false, animation: 'fade' }} />
         <Stack.Screen name="home" options={{ headerShown: false }} />
         <Stack.Screen name="contact-us" options={{ headerShown: false, animation: 'slide_from_right' }} />
+        <Stack.Screen name="offers" options={{ headerShown: false, animation: 'slide_from_right' }} />
       </Stack>
       <ToastContainer />
     </>

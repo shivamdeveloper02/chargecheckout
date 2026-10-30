@@ -27,3 +27,20 @@ export interface ContactOption {
   iconType?: React.ComponentProps<typeof Icon>['type'];
   action: () => void | Promise<void>;
 }
+export type CouponCategory = 'my_coupons' | 'charging' | 'wallet';
+
+export interface CouponTab {
+  id: CouponCategory;
+  label: string;
+}
+
+export interface CouponItem {
+  id: string;
+  code: string;
+  title: string;
+  subtitle: string;
+  badgeTop: string;
+  badgeBottom: string;
+  category: CouponCategory;
+  terms: string[];
+}

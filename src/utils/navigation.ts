@@ -12,6 +12,7 @@ export const ROUTES = {
   WALLET: '/(tabs)/wallet',
   PROFILE: '/(tabs)/profile',
   CONTACTUS: '/contact-us',
+  OFFERS: '/offers'
 } as const;
 
 export type AppRouteKey = keyof typeof ROUTES;
@@ -99,6 +100,7 @@ export const appNavigation = {
   toWallet: () => navigateTo(ROUTES.WALLET),
   toProfile: () => navigateTo(ROUTES.PROFILE),
   toContactUs: () => pushTo(ROUTES.CONTACTUS),
+  toOffers: () => pushTo(ROUTES.OFFERS)
 } as const;
 
 export default appNavigation;
