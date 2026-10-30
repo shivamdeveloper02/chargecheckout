@@ -2,9 +2,8 @@ import { Button, Icon } from '@/components';
 import { Input } from '@/components/Forms';
 import { ScreenProvider, Text } from '@/components/Reusable';
 import { toast } from '@/components/Toast';
-import { EMAIL_REGEX } from '@/utils';
+import { EMAIL_REGEX, pushTo, replaceWith, ROUTES } from '@/utils';
 import { Image } from 'expo-image';
-import { router } from 'expo-router';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
 
@@ -41,7 +40,7 @@ const LoginScreen: React.FC = () => {
         'Welcome back to ChargeCheckout!',
         'Signed In'
       );
-      router.replace('/(tabs)');
+      replaceWith(ROUTES.TABS);
     } catch {
       toast.error('Unable to sign in. Please try again.', 'Login Failed');
     } finally {
@@ -128,7 +127,7 @@ const LoginScreen: React.FC = () => {
             />
             <View className="mt-3 items-end">
               <Pressable
-                onPress={() => router.push('/forgot-password')}
+                onPress={() => pushTo(ROUTES.FORGOT_PASSWORD)}
                 hitSlop={8}
               >
                 <Text className="text-xs font-semibold text-[#0A3D91]">
@@ -154,7 +153,7 @@ const LoginScreen: React.FC = () => {
             </Text>
 
             <Pressable
-              onPress={() => router.push('/signup')}
+              onPress={() => pushTo(ROUTES.SIGNUP)}
               hitSlop={8}
             >
               <Text className="text-sm font-semibold text-[#0A3D91]">

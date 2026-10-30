@@ -1,6 +1,6 @@
 import { ScreenProvider, Text } from '@/components/Reusable';
+import { replaceWith, ROUTES } from '@/utils';
 import { Image } from 'expo-image';
-import { router } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
@@ -22,7 +22,7 @@ const Splash: React.FC = () => {
         logoOpacity.value = withTiming(1, { duration: 600, easing: Easing.out(Easing.cubic) });
         logoScale.value = withSpring(1, { damping: 15, stiffness: 120 });
         const timer = setTimeout(() => {
-            router.replace('/(tabs)');
+            replaceWith(ROUTES.TABS);
         }, 1800);
         return () => clearTimeout(timer);
     }, []);

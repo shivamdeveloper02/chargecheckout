@@ -20,3 +20,10 @@ export interface MenuItem {
   badge?: string;
   onPress?: () => void;
 }
+export interface ContactOption {
+  id: string;
+  label: string;
+  iconName: string;
+  iconType?: React.ComponentProps<typeof Icon>['type'];
+  action: () => void | Promise<void>;
+}

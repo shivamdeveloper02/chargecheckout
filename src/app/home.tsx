@@ -1,3 +1,4 @@
+import { ROUTES } from '@/utils';
 import { Redirect } from 'expo-router';
 import React from 'react';
 /**
@@ -6,6 +7,6 @@ import React from 'react';
  * Map is configured as the primary Home Screen.
  */
 const HomeScreen: React.FC = () => {
-  return <Redirect href="/(tabs)" />;
+  return <Redirect href={ROUTES.TABS} />;
 }
 export default HomeScreen

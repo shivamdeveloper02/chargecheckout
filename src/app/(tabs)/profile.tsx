@@ -3,7 +3,7 @@ import { LoadingScreen, ScreenProvider, Text } from '@/components/Reusable';
 import { BrandColors } from '@/constants/theme';
 import { ACCOUNT_ITEMS, MANAGE_ITEMS, SHOP_ITEMS, STATION_ITEMS } from '@/data';
 import { MenuItem } from '@/types';
-import { router } from 'expo-router';
+import { navigateTo, pushTo, replaceWith, ROUTES } from '@/utils';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 
@@ -78,7 +78,7 @@ const ProfileScreen: React.FC = () => {
   const handleMenuPress = (item: MenuItem) => {
     if (item.id === 'logout') {
       toast.info('Logging out of your account...', 'Logout');
-      router.replace('/login');
+      replaceWith(ROUTES.LOGIN);
       return;
     }
     toast.info(`${item.label} selected`, 'Profile');
@@ -265,7 +265,7 @@ const ProfileScreen: React.FC = () => {
 
               <TouchableOpacity
                 activeOpacity={0.75}
-                onPress={() => toast.info('Opening help & support', 'Help')}
+                onPress={() => pushTo(ROUTES.CONTACTUS)}
                 className="flex-1 bg-white rounded-2xl py-4 items-center justify-center border border-slate-300"
               >
                 <View className="w-10 h-10 rounded-xl bg-secondary-50 items-center justify-center mb-1.5">
@@ -303,7 +303,7 @@ const ProfileScreen: React.FC = () => {
 
               <TouchableOpacity
                 activeOpacity={0.8}
-                onPress={() => router.navigate('/(tabs)/wallet')}
+                onPress={() => navigateTo(ROUTES.WALLET)}
                 className="border border-primary rounded-xl px-4 py-2 bg-primary-50/60"
               >
                 <Text weight="semibold" className="text-xs text-primary-700">

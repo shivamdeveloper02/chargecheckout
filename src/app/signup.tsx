@@ -1,9 +1,8 @@
 import { Button, Icon } from '@/components';
 import { Input } from '@/components/Forms';
 import { ScreenProvider, Text } from '@/components/Reusable';
-import { EMAIL_REGEX, PHONE_REGEX } from '@/utils';
+import { EMAIL_REGEX, PHONE_REGEX, replaceWith, ROUTES } from '@/utils';
 import { Image } from 'expo-image';
-import { router } from 'expo-router';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
 
@@ -211,7 +210,7 @@ const SignUpScreen: React.FC = () => {
                         </Text>
 
                         <Pressable
-                            onPress={() => router.replace('/login')}
+                            onPress={() => replaceWith(ROUTES.LOGIN)}
                             hitSlop={8}
                         >
                             <Text className="text-sm font-semibold text-[#0A3D91]">

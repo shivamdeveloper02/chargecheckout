@@ -3,8 +3,7 @@ import { Input } from '@/components/Forms/Input';
 import Icon from '@/components/Icon';
 import { ScreenProvider, Text } from '@/components/Reusable';
 import { toast } from '@/components/Toast';
-import { EMAIL_REGEX } from '@/utils';
-import { router } from 'expo-router';
+import { EMAIL_REGEX, goBack, pushTo, replaceWith, ROUTES } from '@/utils';
 import { useState } from 'react';
 import { Pressable, View } from 'react-native';
 
@@ -51,7 +50,7 @@ const ForgotPassword: React.FC = () => {
     setTimeout(() => {
       setIsLoading(false);
       toast.success('Your password has been updated. Please sign in.', 'Password Reset');
-      router.replace('/login');
+      replaceWith(ROUTES.LOGIN);
     }, 600);
   };
 
@@ -60,7 +59,7 @@ const ForgotPassword: React.FC = () => {
       <View className="flex-grow py-6">
         <View className="flex-row items-center justify-between mb-6">
           <Pressable
-            onPress={() => router.back()}
+            onPress={() => goBack(ROUTES.LOGIN)}
             hitSlop={12}
             className="w-10 h-10 rounded-full bg-slate-100 items-center justify-center active:bg-slate-200"
             accessibilityLabel="Go back"
@@ -140,7 +139,7 @@ const ForgotPassword: React.FC = () => {
               Remember your password?{' '}
             </Text>
             <Pressable
-              onPress={() => router.push('/login')}
+              onPress={() => pushTo(ROUTES.LOGIN)}
               hitSlop={8}
             >
               <Text className="text-sm font-semibold text-[#0A3D91]">
