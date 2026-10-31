@@ -135,9 +135,7 @@ const ProfileScreen: React.FC = () => {
               </View>
               <TouchableOpacity
                 activeOpacity={0.8}
-                onPress={() =>
-                  toast.info('Edit profile coming soon', 'Edit Profile')
-                }
+                onPress={appNavigation.toEditProfile}
                 className="w-10 h-10 items-center justify-center bg-white/95 rounded-full shadow-sm"
               >
                 <Icon

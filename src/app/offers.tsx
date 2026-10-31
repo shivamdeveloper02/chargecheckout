@@ -1,9 +1,8 @@
 import { Icon, toast } from '@/components';
-import { ScreenProvider, Text } from '@/components/Reusable';
+import { CustomHeader, ScreenProvider, Text } from '@/components/Reusable';
 import { BrandColors } from '@/constants/theme';
 import { COUPONS_DATA, COUPON_TABS } from '@/data';
 import { CouponCategory, CouponItem } from '@/types';
-import { goBack } from '@/utils';
 import React, { useMemo, useState } from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 
@@ -123,32 +122,9 @@ const OffersScreen: React.FC = () => {
       edges={['top', 'bottom']}
       scrollable={false}
       className="flex-1 bg-white"
+      header={<CustomHeader title="Offers" />}
     >
       <View className="flex-1 bg-white">
-        {/* Top Header */}
-        <View className="flex-row items-center justify-between px-4 pt-3 pb-3">
-          <TouchableOpacity
-            activeOpacity={0.75}
-            onPress={() => goBack()}
-            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-            className="w-10 h-10 items-center justify-center rounded-full active:bg-slate-100"
-            accessibilityLabel="Go back"
-          >
-            <Icon
-              name="arrow-back"
-              type="Ionicons"
-              size={24}
-              color={BrandColors.secondary.DEFAULT}
-            />
-          </TouchableOpacity>
-          <Text
-            weight="bold"
-            className="text-lg text-slate-900 tracking-wide"
-          >
-            Offers
-          </Text>
-          <View className="w-10" />
-        </View>
         <View className="flex-row border-b border-slate-200 px-4 mt-2">
           {COUPON_TABS.map((tab) => {
             const isActive = activeTab === tab.id;

@@ -1,8 +1,7 @@
 import { Icon, toast } from '@/components';
-import { ScreenProvider, Text } from '@/components/Reusable';
+import { CustomHeader, ScreenProvider, Text } from '@/components/Reusable';
 import { BrandColors } from '@/constants/theme';
 import { ContactOption } from '@/types';
-import { goBack } from '@/utils';
 import React from 'react';
 import { Linking, TouchableOpacity, View } from 'react-native';
 
@@ -338,23 +337,10 @@ const ContactUsScreen: React.FC = () => {
             edges={['top']}
             scrollable={false}
             className="flex-1"
+            header={<CustomHeader title="Contact us" variant="secondary" />
+            }
         >
             <View className="flex-1 bg-secondary">
-                <View className="flex-row items-center justify-between px-4 pt-3 pb-2">
-                    <TouchableOpacity
-                        activeOpacity={0.75}
-                        onPress={() => goBack()}
-                        hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-                        className="w-10 h-10 items-center justify-center rounded-full"
-                        accessibilityLabel="Go back"
-                    >
-                        <Icon name="arrow-back" type="Ionicons" size={24} color="#FFFFFF" />
-                    </TouchableOpacity>
-                    <Text weight="bold" className="text-[19px] text-white tracking-wide">
-                        Contact us
-                    </Text>
-                    <View className="w-10" />
-                </View>
                 <View className="items-center justify-center py-3">
                     <ContactIllustration />
                 </View>

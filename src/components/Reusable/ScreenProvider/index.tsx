@@ -11,9 +11,10 @@ import {
     type ViewStyle,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import CustomHeader, { type CustomHeaderProps } from '../CustomHeader';
 import LoadingScreen from '../LoadingScreen';
 
-interface ScreenProviderProps {
+export interface ScreenProviderProps {
     children: React.ReactNode;
     statusBarStyle?: StatusBarStyle;
     statusBarBackgroundColor?: string;
@@ -32,6 +33,13 @@ interface ScreenProviderProps {
     style?: ViewStyle;
     isLoading?: boolean;
     loadingMessage?: string;
+    showHeader?: boolean;
+    header?: React.ReactNode;
+    headerProps?: CustomHeaderProps;
+    title?: string;
+    subtitle?: string;
+    onBackPress?: () => void;
+    rightComponent?: React.ReactNode;
 }
 
 const ScreenProvider: React.FC<ScreenProviderProps> = ({
@@ -53,6 +61,13 @@ const ScreenProvider: React.FC<ScreenProviderProps> = ({
     style,
     isLoading = false,
     loadingMessage,
+    showHeader,
+    header,
+    headerProps,
+    title,
+    subtitle,
+    onBackPress,
+    rightComponent,
 }) => {
     const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
 
@@ -72,6 +87,27 @@ const ScreenProvider: React.FC<ScreenProviderProps> = ({
     }, []);
 
     const Container = safeArea ? SafeAreaView : View;
+
+    const shouldRenderHeader =
+        showHeader === true ||
+        (showHeader !== false &&
+            (header !== undefined ||
+                headerProps !== undefined ||
+                title !== undefined ||
+                subtitle !== undefined));
+
+    const headerElement =
+        header !== undefined ? (
+            header
+        ) : shouldRenderHeader ? (
+            <CustomHeader
+                title={title}
+                subtitle={subtitle}
+                onBackPress={onBackPress}
+                rightComponent={rightComponent}
+                {...headerProps}
+            />
+        ) : null;
 
     const content = (
         <Pressable
@@ -115,6 +151,7 @@ const ScreenProvider: React.FC<ScreenProviderProps> = ({
                         enabled={keyboardAvoiding}
                         keyboardVerticalOffset={keyboardVerticalOffset}
                     >
+                        {headerElement}
                         {scrollable ? (
                             <ScrollView
                                 className="flex-1"
