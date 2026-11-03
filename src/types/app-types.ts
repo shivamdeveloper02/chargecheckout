@@ -143,3 +143,15 @@ export interface SignUpFormData {
 }
 
 export type SignUpFormField = keyof SignUpFormData;
+
+export interface EditProfileFormData {
+    fullName: string;
+    mobile: string;
+    email: string;
+    /** Local file uri / remote url of the avatar, `null` when there is none. */
+    image: string | null;
+}
+
+export type EditProfileTextField = Exclude<keyof EditProfileFormData, 'image'>;
+
+export type EditProfileErrors = Partial<Record<EditProfileTextField, string>>;

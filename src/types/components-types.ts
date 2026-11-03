@@ -94,7 +94,7 @@ export interface CardFooterProps extends ViewProps {
  */
 export type CustomImageVariant = 'circle' | 'square' | 'rounded';
 
-export interface CustomImageProps {
+export interface ImagePickerProps {
     /** Remote url, local `require()` asset, or `{ uri }`. */
     source?: ImageSource | string | number | null;
     variant?: CustomImageVariant;
@@ -158,7 +158,7 @@ export interface ModalContextType {
 }
 
 export type ModalSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | 'full';
-export type ModalPosition = 'top' | 'center';
+export type ModalPosition = 'top' | 'center' | 'bottom';
 
 export interface ModalProps {
     isOpen: boolean;

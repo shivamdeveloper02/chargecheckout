@@ -33,12 +33,13 @@ const ModalRoot: React.FC<ModalProps> = ({
 }) => {
   const insets = useSafeAreaInsets();
   const isTop = position === 'top';
+  const isBottom = position === 'bottom';
 
   return (
     <RNModal
       visible={isOpen}
       transparent
-      animationType="fade"
+      animationType={isBottom ? 'slide' : 'fade'}
       onRequestClose={onClose}
       statusBarTranslucent
     >
@@ -50,9 +51,10 @@ const ModalRoot: React.FC<ModalProps> = ({
           <View
             style={{
               paddingTop: isTop ? insets.top + 20 : insets.top,
-              paddingBottom: insets.bottom + 16,
+              // Bottom sheet sits flush with the screen edge; its card handles the safe-area inset.
+              paddingBottom: isBottom ? 0 : insets.bottom + 16,
             }}
-            className={`flex-1 justify-center items-center px-4 ${isTop ? 'justify-start' : 'justify-center'
+            className={`flex-1 items-center ${isBottom ? 'px-0 justify-end' : isTop ? 'px-4 justify-start' : 'px-4 justify-center'
               }`}
           >
             {/* Backdrop Overlay */}
@@ -63,9 +65,18 @@ const ModalRoot: React.FC<ModalProps> = ({
 
             {/* Modal Card */}
             <View
-              style={style}
-              className={`w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-neutral-100 overflow-hidden ${className}`}
+              style={[isBottom ? { paddingBottom: insets.bottom } : null, style]}
+              className={
+                isBottom
+                  ? `w-full bg-white rounded-t-3xl overflow-hidden ${className}`
+                  : `w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-neutral-100 overflow-hidden ${className}`
+              }
             >
+              {isBottom && (
+                <View className="items-center pt-2.5">
+                  <View className="h-1 w-10 rounded-full bg-neutral-300" />
+                </View>
+              )}
               {children}
             </View>
           </View>
