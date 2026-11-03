@@ -29,6 +29,19 @@
       "expo-router",
       "expo-font",
       [
+        "expo-image-picker",
+        {
+          "photosPermission": "ChargeCheckout needs access to your photos so you can choose a profile picture.",
+          "cameraPermission": "ChargeCheckout needs access to your camera so you can take a profile picture."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "ChargeCheckout uses your location to find charging stations near you."
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "backgroundColor": "#FFFFFF",

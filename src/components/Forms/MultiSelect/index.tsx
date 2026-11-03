@@ -1,42 +1,15 @@
 import Icon from '@/components/Icon';
 import { Text } from '@/components/Reusable';
+import type { MultiSelectOption, MultiSelectProps } from '@/types';
 import React, { useState } from 'react';
 import {
   Modal,
   Pressable,
   ScrollView,
-  StyleProp,
   TextInput,
-  View,
-  ViewStyle,
+  View
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-export interface MultiSelectOption {
-  value: string;
-  label: string;
-  description?: string;
-  disabled?: boolean;
-}
-
-export interface MultiSelectProps {
-  label?: string;
-  error?: string;
-  hint?: string;
-  options: (MultiSelectOption | string)[];
-  value?: string[];
-  onChange: (selectedValues: string[]) => void;
-  placeholder?: string;
-  searchable?: boolean;
-  disabled?: boolean;
-  required?: boolean;
-  maxDisplayTags?: number;
-  containerClassName?: string;
-  containerStyle?: StyleProp<ViewStyle>;
-  fullWidth?: boolean;
-  className?: string;
-  style?: StyleProp<ViewStyle>;
-}
 
 export const MultiSelect: React.FC<MultiSelectProps> = ({
   label,
@@ -253,8 +226,8 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
                       <View className="flex-1 mr-2">
                         <Text
                           className={`text-xs ${isSelected
-                              ? 'font-bold text-blue-800'
-                              : 'font-medium text-slate-800'
+                            ? 'font-bold text-blue-800'
+                            : 'font-medium text-slate-800'
                             }`}
                         >
                           {opt.label}

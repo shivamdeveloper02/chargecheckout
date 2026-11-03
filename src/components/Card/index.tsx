@@ -1,48 +1,7 @@
 import { Text } from '@/components/Reusable';
+import type { CardBodyProps, CardDescriptionProps, CardFooterProps, CardHeaderProps, CardProps, CardTitleProps, CardVariant } from '@/types';
 import React from 'react';
-import { StyleProp, TextStyle, View, ViewProps, ViewStyle } from 'react-native';
-
-export type CardVariant = 'default' | 'flat' | 'outline' | 'ghost' | 'none';
-
-export interface CardProps extends ViewProps {
-  children?: React.ReactNode;
-  className?: string;
-  variant?: CardVariant;
-  noPadding?: boolean;
-  style?: StyleProp<ViewStyle>;
-}
-
-export interface CardHeaderProps extends ViewProps {
-  children?: React.ReactNode;
-  className?: string;
-  action?: React.ReactNode;
-  style?: StyleProp<ViewStyle>;
-}
-
-export interface CardTitleProps {
-  children?: React.ReactNode;
-  className?: string;
-  style?: StyleProp<TextStyle>;
-}
-
-export interface CardDescriptionProps {
-  children?: React.ReactNode;
-  className?: string;
-  style?: StyleProp<TextStyle>;
-}
-
-export interface CardBodyProps extends ViewProps {
-  children?: React.ReactNode;
-  className?: string;
-  noPadding?: boolean;
-  style?: StyleProp<ViewStyle>;
-}
-
-export interface CardFooterProps extends ViewProps {
-  children?: React.ReactNode;
-  className?: string;
-  style?: StyleProp<ViewStyle>;
-}
+import { View } from 'react-native';
 
 const variantStyles: Record<CardVariant, string> = {
   default: 'bg-white border border-neutral-200 shadow-sm',

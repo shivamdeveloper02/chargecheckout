@@ -1,34 +1,14 @@
 import Icon from '@/components/Icon';
 import { Text } from '@/components/Reusable';
-import React, { forwardRef, useState } from 'react';
+import type { InputProps } from '@/types';
+import { forwardRef, useState } from 'react';
 import {
   KeyboardTypeOptions,
   Pressable,
-  StyleProp,
   TextInput,
   TextInputProps,
-  TextStyle,
-  View,
-  ViewStyle,
+  View
 } from 'react-native';
-
-export interface InputProps extends Omit<TextInputProps, 'style'> {
-  label?: string;
-  error?: string;
-  hint?: string;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
-  clearable?: boolean;
-  onClear?: () => void;
-  containerClassName?: string;
-  containerStyle?: StyleProp<ViewStyle>;
-  fullWidth?: boolean;
-  type?: 'text' | 'password' | 'email' | 'number' | 'tel';
-  required?: boolean;
-  disabled?: boolean;
-  className?: string;
-  style?: StyleProp<TextStyle>;
-}
 
 export const Input = forwardRef<TextInput, InputProps>(
   (

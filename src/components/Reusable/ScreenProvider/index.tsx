@@ -1,3 +1,4 @@
+import type { ScreenProviderProps } from '@/types';
 import React, { useEffect, useState } from 'react';
 import {
     Keyboard,
@@ -6,41 +7,11 @@ import {
     Pressable,
     ScrollView,
     StatusBar,
-    View,
-    type StatusBarStyle,
-    type ViewStyle,
+    View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import CustomHeader, { type CustomHeaderProps } from '../CustomHeader';
+import CustomHeader from '../CustomHeader';
 import LoadingScreen from '../LoadingScreen';
-
-export interface ScreenProviderProps {
-    children: React.ReactNode;
-    statusBarStyle?: StatusBarStyle;
-    statusBarBackgroundColor?: string;
-    hiddenStatusBar?: boolean;
-    translucentStatusBar?: boolean;
-    safeArea?: boolean;
-    edges?: Array<'top' | 'bottom' | 'left' | 'right'>;
-    keyboardAvoiding?: boolean;
-    keyboardVerticalOffset?: number;
-    dismissKeyboardOnPress?: boolean;
-    scrollable?: boolean;
-    bounces?: boolean;
-    className?: string;
-    contentContainerClassName?: string;
-    backgroundColor?: string;
-    style?: ViewStyle;
-    isLoading?: boolean;
-    loadingMessage?: string;
-    showHeader?: boolean;
-    header?: React.ReactNode;
-    headerProps?: CustomHeaderProps;
-    title?: string;
-    subtitle?: string;
-    onBackPress?: () => void;
-    rightComponent?: React.ReactNode;
-}
 
 const ScreenProvider: React.FC<ScreenProviderProps> = ({
     children,

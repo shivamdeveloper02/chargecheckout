@@ -1,27 +1,10 @@
-import React, { forwardRef } from 'react';
+import type { TextProps, TextWeight } from '@/types';
+import { forwardRef } from 'react';
 import {
-  StyleSheet,
   Text as RNText,
-  type TextProps as RNTextProps,
-  type TextStyle,
+  StyleSheet,
+  type TextStyle
 } from 'react-native';
-
-export type TextWeight =
-  | 'thin'
-  | 'extralight'
-  | 'light'
-  | 'normal'
-  | 'regular'
-  | 'medium'
-  | 'semibold'
-  | 'bold'
-  | 'extrabold'
-  | 'black';
-
-export interface TextProps extends RNTextProps {
-  weight?: TextWeight;
-  className?: string;
-}
 
 const weightMap: Record<TextWeight, { fontFamily: string; fontWeight: TextStyle['fontWeight'] }> = {
   thin: { fontFamily: 'Poppins-Thin', fontWeight: '100' },

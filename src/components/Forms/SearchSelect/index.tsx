@@ -1,48 +1,9 @@
 import Icon from '@/components/Icon';
 import { Text } from '@/components/Reusable';
+import type { SearchSelectOption, SearchSelectProps } from '@/types';
 import React, { useState } from 'react';
-import {
-  Modal,
-  Pressable,
-  ScrollView,
-  StyleProp,
-  TextInput,
-  View,
-  ViewStyle,
-} from 'react-native';
+import { Modal, Pressable, ScrollView, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-export interface SearchSelectOption {
-  value: string | number;
-  label: string;
-  subLabel?: string;
-  badge?: string;
-  badgeColor?: string;
-  disabled?: boolean;
-}
-
-export interface SearchSelectProps {
-  label?: string;
-  error?: string;
-  hint?: string;
-  options: (SearchSelectOption | string | number)[];
-  value?: string | number;
-  onChange: (value: string) => void;
-  placeholder?: string;
-  searchPlaceholder?: string;
-  leftIcon?: React.ReactNode;
-  clearable?: boolean;
-  disabled?: boolean;
-  required?: boolean;
-  searchable?: boolean;
-  containerClassName?: string;
-  containerStyle?: StyleProp<ViewStyle>;
-  className?: string;
-  style?: StyleProp<ViewStyle>;
-  fullWidth?: boolean;
-  noOptionsText?: string;
-  id?: string;
-}
 
 export const SearchSelect: React.FC<SearchSelectProps> = ({
   label,
@@ -251,8 +212,8 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
                         <View className="flex-row items-center gap-2">
                           <Text
                             className={`text-xs ${isSelected
-                                ? 'font-bold text-blue-800'
-                                : 'font-medium text-slate-800'
+                              ? 'font-bold text-blue-800'
+                              : 'font-medium text-slate-800'
                               }`}
                           >
                             {opt.label}

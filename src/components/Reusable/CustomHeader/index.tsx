@@ -1,58 +1,10 @@
-import Icon, { type IconSetName } from '@/components/Icon';
+import Icon from '@/components/Icon';
 import { BrandColors } from '@/constants/theme';
-import { goBack, type AppRoutePath } from '@/utils';
-import type { Href } from 'expo-router';
+import type { CustomHeaderProps, CustomHeaderVariant } from '@/types';
+import { goBack } from '@/utils';
 import React from 'react';
-import {
-    TouchableOpacity,
-    View,
-    type StyleProp,
-    type TextStyle,
-    type ViewStyle,
-} from 'react-native';
-import Text, { type TextWeight } from '../Text';
-
-export type CustomHeaderVariant =
-    | 'default'
-    | 'secondary'
-    | 'primary'
-    | 'dark'
-    | 'transparent';
-
-export interface CustomHeaderProps {
-    title?: string;
-    subtitle?: string;
-    titleAlign?: 'center' | 'left';
-    titleWeight?: TextWeight;
-    titleColor?: string;
-    titleClassName?: string;
-    subtitleClassName?: string;
-    titleStyle?: StyleProp<TextStyle>;
-    variant?: CustomHeaderVariant;
-    backgroundColor?: string;
-    bordered?: boolean;
-    elevated?: boolean;
-    showBackButton?: boolean;
-    onBackPress?: () => void;
-    fallbackRoute?: AppRoutePath | Href;
-    backIconName?: string;
-    backIconType?: IconSetName;
-    backIconSize?: number;
-    backIconColor?: string;
-    backButtonClassName?: string;
-    leftComponent?: React.ReactNode;
-    centerComponent?: React.ReactNode;
-    rightComponent?: React.ReactNode;
-    rightIconName?: string;
-    rightIconType?: IconSetName;
-    rightIconSize?: number;
-    rightIconColor?: string;
-    onRightPress?: () => void;
-    rightButtonClassName?: string;
-    rightBadge?: string | number | boolean;
-    className?: string;
-    style?: StyleProp<ViewStyle>;
-}
+import { TouchableOpacity, View } from 'react-native';
+import Text from '../Text';
 
 const variantConfig: Record<
     CustomHeaderVariant,
@@ -200,10 +152,10 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
         return (
             <View
                 className={`flex-1 ${titleAlign === 'center'
-                        ? 'items-center'
-                        : showBackButton || leftComponent
-                            ? 'items-start pl-2'
-                            : 'items-start'
+                    ? 'items-center'
+                    : showBackButton || leftComponent
+                        ? 'items-start pl-2'
+                        : 'items-start'
                     } justify-center px-2`}
             >
                 {title ? (

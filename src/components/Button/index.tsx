@@ -1,45 +1,11 @@
 import { Text } from '@/components/Reusable';
+import type { ButtonProps, ButtonSize, ButtonVariant } from '@/types';
 import { forwardRef } from 'react';
 import {
   ActivityIndicator,
-  GestureResponderEvent,
   Pressable,
-  PressableProps,
-  StyleProp,
-  TextStyle,
-  View,
-  ViewStyle,
+  View
 } from 'react-native';
-
-export type ButtonVariant =
-  | 'primary'
-  | 'secondary'
-  | 'border'
-  | 'outline'
-  | 'ghost'
-  | 'danger'
-  | 'destructive'
-  | 'link'
-  | 'dark'
-  | 'gradient';
-
-export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'icon' | 'icon-sm';
-
-export interface ButtonProps extends Omit<PressableProps, 'style' | 'children'> {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-  isLoading?: boolean;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
-  fullWidth?: boolean;
-  disabled?: boolean;
-  className?: string;
-  style?: StyleProp<ViewStyle>;
-  textClassName?: string;
-  textStyle?: StyleProp<TextStyle>;
-  children?: React.ReactNode;
-  onPress?: (event: GestureResponderEvent) => void;
-}
 
 const variantContainerStyles: Record<ButtonVariant, string> = {
   primary: 'bg-[#004586] border border-[#004586] active:bg-[#003870]',

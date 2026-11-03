@@ -1,19 +1,11 @@
 import { Button, Icon } from '@/components';
 import { Input } from '@/components/Forms';
 import { ScreenProvider, Text } from '@/components/Reusable';
+import type { SignUpFormData as FormData, SignUpFormField as FormField } from '@/types';
 import { EMAIL_REGEX, PHONE_REGEX, replaceWith, ROUTES } from '@/utils';
 import { Image } from 'expo-image';
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
-
-interface FormData {
-    name: string;
-    mobile: string;
-    email: string;
-    password: string;
-}
-
-type FormField = keyof FormData;
 
 const initialFormData: FormData = {
     name: '',

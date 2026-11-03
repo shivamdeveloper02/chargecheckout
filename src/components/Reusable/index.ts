@@ -1,8 +1,6 @@
-export {
-  default as CustomHeader,
-  type CustomHeaderProps,
-  type CustomHeaderVariant,
-} from './CustomHeader';
-export { default as LoadingScreen, type LoadingScreenProps } from './LoadingScreen';
-export { default as ScreenProvider, type ScreenProviderProps } from './ScreenProvider';
-export { default as Text, type TextProps, type TextWeight } from './Text';
+export { default as CustomHeader } from './CustomHeader';
+export { default as CustomImage } from "./CustomImage";
+export { default as LoadingScreen } from './LoadingScreen';
+export { default as ScreenProvider } from './ScreenProvider';
+export { default as Text } from './Text';
+

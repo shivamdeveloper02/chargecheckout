@@ -1,22 +1,7 @@
 import { Text } from '@/components/Reusable';
+import type { RadioGroupProps, RadioProps } from '@/types';
 import React from 'react';
-import { Pressable, StyleProp, TextStyle, View, ViewStyle } from 'react-native';
-
-export interface RadioProps {
-  label?: React.ReactNode;
-  description?: string;
-  checked?: boolean;
-  onChange?: (checked: boolean) => void;
-  disabled?: boolean;
-  containerClassName?: string;
-  containerStyle?: StyleProp<ViewStyle>;
-  className?: string;
-  style?: StyleProp<ViewStyle>;
-  labelStyle?: StyleProp<TextStyle>;
-  descriptionStyle?: StyleProp<TextStyle>;
-  value?: string;
-  name?: string;
-}
+import { Pressable, View } from 'react-native';
 
 export const Radio: React.FC<RadioProps> = ({
   label,
@@ -80,24 +65,6 @@ export const Radio: React.FC<RadioProps> = ({
     </Pressable>
   );
 };
-
-export interface RadioOption {
-  value: string;
-  label: string;
-  description?: string;
-  disabled?: boolean;
-}
-
-export interface RadioGroupProps {
-  label?: string;
-  name?: string;
-  options: RadioOption[];
-  value: string;
-  onChange: (value: string) => void;
-  direction?: 'horizontal' | 'vertical';
-  containerClassName?: string;
-  containerStyle?: StyleProp<ViewStyle>;
-}
 
 export const RadioGroup: React.FC<RadioGroupProps> = ({
   label,

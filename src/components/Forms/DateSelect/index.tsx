@@ -1,34 +1,8 @@
 import Icon from '@/components/Icon';
 import { Text } from '@/components/Reusable';
-import React, { forwardRef, useState } from 'react';
-import {
-  Pressable,
-  StyleProp,
-  TextInput,
-  TextInputProps,
-  TextStyle,
-  View,
-  ViewStyle,
-} from 'react-native';
-
-export interface DateSelectProps extends Omit<TextInputProps, 'style' | 'onChange'> {
-  label?: string;
-  error?: string;
-  hint?: string;
-  leftIcon?: React.ReactNode;
-  clearable?: boolean;
-  onClear?: () => void;
-  containerClassName?: string;
-  containerStyle?: StyleProp<ViewStyle>;
-  fullWidth?: boolean;
-  disabled?: boolean;
-  required?: boolean;
-  className?: string;
-  style?: StyleProp<TextStyle>;
-  value?: string;
-  onChange?: (value: string) => void;
-  onPress?: () => void;
-}
+import type { DateSelectProps } from '@/types';
+import { forwardRef, useState } from 'react';
+import { Pressable, TextInput, View } from 'react-native';
 
 export const DateSelect = forwardRef<TextInput, DateSelectProps>(
   (

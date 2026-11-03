@@ -1,28 +1,7 @@
 import { Text } from '@/components/Reusable';
+import type { ToggleProps } from '@/types';
 import React from 'react';
-import {
-  Platform,
-  Pressable,
-  StyleProp,
-  Switch,
-  TextStyle,
-  View,
-  ViewStyle,
-} from 'react-native';
-
-export interface ToggleProps {
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-  label?: string;
-  description?: string;
-  disabled?: boolean;
-  size?: 'sm' | 'md' | 'lg';
-  containerClassName?: string;
-  containerStyle?: StyleProp<ViewStyle>;
-  labelStyle?: StyleProp<TextStyle>;
-  descriptionStyle?: StyleProp<TextStyle>;
-  id?: string;
-}
+import { Platform, Pressable, Switch, View } from 'react-native';
 
 export const Toggle: React.FC<ToggleProps> = ({
   checked,

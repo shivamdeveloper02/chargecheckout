@@ -1,5 +1,6 @@
 import Icon from '@/components/Icon';
 import { Text } from '@/components/Reusable';
+import type { ModalBodyProps, ModalContextType, ModalDescriptionProps, ModalFooterProps, ModalHeaderProps, ModalProps, ModalTitleProps } from '@/types';
 import React, { createContext, useContext } from 'react';
 import {
   KeyboardAvoidingView,
@@ -7,17 +8,9 @@ import {
   Pressable,
   Modal as RNModal,
   ScrollView,
-  StyleProp,
-  TextStyle,
-  View,
-  ViewProps,
-  ViewStyle,
+  View
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-interface ModalContextType {
-  onClose: () => void;
-}
 
 const ModalContext = createContext<ModalContextType | null>(null);
 
@@ -28,54 +21,6 @@ const useModal = () => {
   }
   return context;
 };
-
-export type ModalSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | 'full';
-export type ModalPosition = 'top' | 'center';
-
-export interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-  size?: ModalSize;
-  position?: ModalPosition;
-  topOffset?: string;
-  closeOnOverlayClick?: boolean;
-  closeOnEsc?: boolean;
-  className?: string;
-  style?: StyleProp<ViewStyle>;
-}
-
-export interface ModalHeaderProps extends ViewProps {
-  children?: React.ReactNode;
-  className?: string;
-  showCloseButton?: boolean;
-  style?: StyleProp<ViewStyle>;
-}
-
-export interface ModalTitleProps {
-  children?: React.ReactNode;
-  className?: string;
-  style?: StyleProp<TextStyle>;
-  as?: string;
-}
-
-export interface ModalDescriptionProps {
-  children?: React.ReactNode;
-  className?: string;
-  style?: StyleProp<TextStyle>;
-}
-
-export interface ModalBodyProps extends ViewProps {
-  children?: React.ReactNode;
-  className?: string;
-  style?: StyleProp<ViewStyle>;
-}
-
-export interface ModalFooterProps extends ViewProps {
-  children?: React.ReactNode;
-  className?: string;
-  style?: StyleProp<ViewStyle>;
-}
 
 const ModalRoot: React.FC<ModalProps> = ({
   isOpen,

@@ -1,4 +1,6 @@
 import { router, type Href } from 'expo-router';
+import type { AppRouteKey, AppRoutePath, NavigationParams } from '@/types';
+export type { AppRouteKey, AppRoutePath, NavigationParams } from '@/types';
 
 export const ROUTES = {
   SPLASH: '/',
@@ -15,10 +17,6 @@ export const ROUTES = {
   OFFERS: '/offers',
   EDITPROFILE: '/edit-profile'
 } as const;
-
-export type AppRouteKey = keyof typeof ROUTES;
-export type AppRoutePath = (typeof ROUTES)[AppRouteKey];
-export type NavigationParams = Record<string, string | number | undefined>;
 
 const resolveHref = (
   pathname: AppRoutePath | Href,

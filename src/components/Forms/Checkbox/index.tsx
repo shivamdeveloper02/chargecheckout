@@ -1,21 +1,8 @@
 import Icon from '@/components/Icon';
 import { Text } from '@/components/Reusable';
+import type { CheckboxProps } from '@/types';
 import React from 'react';
-import { Pressable, StyleProp, TextStyle, View, ViewStyle } from 'react-native';
-
-export interface CheckboxProps {
-  label?: React.ReactNode;
-  description?: string;
-  checked?: boolean;
-  onChange?: (checked: boolean) => void;
-  disabled?: boolean;
-  containerClassName?: string;
-  containerStyle?: StyleProp<ViewStyle>;
-  className?: string;
-  style?: StyleProp<ViewStyle>;
-  labelStyle?: StyleProp<TextStyle>;
-  descriptionStyle?: StyleProp<TextStyle>;
-}
+import { Pressable, View } from 'react-native';
 
 export const Checkbox: React.FC<CheckboxProps> = ({
   label,

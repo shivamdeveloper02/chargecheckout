@@ -1,41 +1,9 @@
 import Icon from '@/components/Icon';
 import { Text } from '@/components/Reusable';
+import type { SelectOption, SelectProps } from '@/types';
 import React, { useState } from 'react';
-import {
-  Modal,
-  Pressable,
-  ScrollView,
-  StyleProp,
-  TextStyle,
-  View,
-  ViewStyle,
-} from 'react-native';
+import { Modal, Pressable, ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-export interface SelectOption {
-  value: string | number;
-  label: string;
-  disabled?: boolean;
-}
-
-export interface SelectProps {
-  label?: string;
-  error?: string;
-  hint?: string;
-  options: (SelectOption | string | number)[];
-  value?: string | number;
-  onChange?: (value: string | number) => void;
-  placeholder?: string;
-  leftIcon?: React.ReactNode;
-  containerClassName?: string;
-  containerStyle?: StyleProp<ViewStyle>;
-  fullWidth?: boolean;
-  disabled?: boolean;
-  required?: boolean;
-  className?: string;
-  style?: StyleProp<ViewStyle>;
-  textStyle?: StyleProp<TextStyle>;
-}
 
 export const Select: React.FC<SelectProps> = ({
   label,
@@ -180,8 +148,8 @@ export const Select: React.FC<SelectProps> = ({
                   >
                     <Text
                       className={`text-xs ${isSelected
-                          ? 'font-bold text-blue-700'
-                          : 'font-medium text-slate-800'
+                        ? 'font-bold text-blue-700'
+                        : 'font-medium text-slate-800'
                         }`}
                     >
                       {opt.label}

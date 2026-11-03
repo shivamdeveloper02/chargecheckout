@@ -1,15 +1,9 @@
 import { BrandColors } from '@/constants/theme';
+import type { LoadingScreenProps } from '@/types';
 import { Image } from 'expo-image';
 import React, { useEffect, useRef } from 'react';
-import { Animated, Easing, View, type ViewStyle } from 'react-native';
+import { Animated, Easing, View } from 'react-native';
 import Text from '../Text';
-
-export interface LoadingScreenProps {
-    message?: string;
-    visible?: boolean;
-    overlay?: boolean;
-    style?: ViewStyle;
-}
 
 const LoadingScreen: React.FC<LoadingScreenProps> = ({
     message = 'Loading...',

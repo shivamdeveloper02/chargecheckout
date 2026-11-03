@@ -1,5 +1,6 @@
 import { Text } from '@/components/Reusable';
 import { BrandColors, Fonts } from '@/constants/theme';
+import type { BottomTabsProps, TabConfig } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { Pressable, View } from 'react-native';
@@ -11,47 +12,6 @@ import Animated, {
     withSpring,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-export interface BottomTabsProps {
-    state: {
-        index: number;
-        routes: Array<{
-            key: string;
-            name: string;
-            params?: Record<string, unknown>;
-        }>;
-    };
-    descriptors: Record<
-        string,
-        {
-            options: {
-                title?: string;
-                tabBarLabel?: string;
-                tabBarIcon?: (props: {
-                    focused: boolean;
-                    color: string;
-                    size: number;
-                }) => React.ReactNode;
-                tabBarBadge?: string | number;
-            };
-        }
-    >;
-    navigation: {
-        emit: (event: {
-            type: string;
-            target: string;
-            canPreventDefault: boolean;
-        }) => { defaultPrevented: boolean };
-        navigate: (name: string, params?: Record<string, unknown>) => void;
-    };
-}
-
-interface TabConfig {
-    name: string;
-    label: string;
-    activeIcon: keyof typeof Ionicons.glyphMap;
-    inactiveIcon: keyof typeof Ionicons.glyphMap;
-}
 
 const TAB_CONFIGS: Record<string, TabConfig> = {
     index: {

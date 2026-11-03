@@ -1,5 +1,5 @@
+import type { SkeletonProps } from '@/types';
 import React, { useEffect } from 'react';
-import { DimensionValue, StyleProp, ViewStyle } from 'react-native';
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -7,15 +7,6 @@ import Animated, {
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
-
-export interface SkeletonProps {
-  width?: DimensionValue;
-  height?: DimensionValue;
-  borderRadius?: number;
-  className?: string;
-  style?: StyleProp<ViewStyle>;
-  animate?: boolean;
-}
 
 export const Skeleton: React.FC<SkeletonProps> = ({
   width = 120,

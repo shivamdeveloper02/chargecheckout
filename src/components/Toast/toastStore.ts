@@ -1,7 +1,5 @@
+import type { ToastItem, ToastListener, ToastOptions, ToastType } from '@/types';
 import { useEffect, useState } from 'react';
-import type { ToastItem, ToastOptions, ToastType } from '@/types';
-
-type ToastListener = (toasts: ToastItem[]) => void;
 
 class ToastManager {
   private toasts: ToastItem[] = [];

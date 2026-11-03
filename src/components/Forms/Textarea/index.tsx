@@ -1,30 +1,8 @@
 import Icon from '@/components/Icon';
 import { Text } from '@/components/Reusable';
+import type { TextareaProps } from '@/types';
 import { forwardRef, useState } from 'react';
-import {
-  StyleProp,
-  TextInput,
-  TextInputProps,
-  TextStyle,
-  View,
-  ViewStyle,
-} from 'react-native';
-
-export interface TextareaProps extends Omit<TextInputProps, 'style'> {
-  label?: string;
-  error?: string;
-  hint?: string;
-  showCount?: boolean;
-  maxLength?: number;
-  rows?: number;
-  containerClassName?: string;
-  containerStyle?: StyleProp<ViewStyle>;
-  fullWidth?: boolean;
-  disabled?: boolean;
-  required?: boolean;
-  className?: string;
-  style?: StyleProp<TextStyle>;
-}
+import { TextInput, TextInputProps, View } from 'react-native';
 
 export const Textarea = forwardRef<TextInput, TextareaProps>(
   (

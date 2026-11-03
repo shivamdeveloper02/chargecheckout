@@ -1,5 +1,7 @@
 import '@/global.css';
 import { Platform } from 'react-native';
+import type { ThemeColor } from '@/types';
+export type { ThemeColor } from '@/types';
 
 export const BrandColors = {
   primary: {
@@ -63,8 +65,6 @@ export const Colors = {
     secondary: BrandColors.secondary.DEFAULT,
   },
 } as const;
-
-export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
 
 export const Fonts = Platform.select({
   ios: {

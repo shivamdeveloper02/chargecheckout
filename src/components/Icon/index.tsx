@@ -1,5 +1,4 @@
-import React from 'react';
-import { StyleProp, View, ViewStyle } from 'react-native';
+import { IconProps } from '@/types';
 import {
   AntDesign,
   Entypo,
@@ -15,6 +14,9 @@ import {
   Octicons,
   SimpleLineIcons,
 } from '@expo/vector-icons';
+import React from 'react';
+import { View } from 'react-native';
+export type { IconProps, IconSetName } from '@/types';
 
 const iconSets = {
   Ionicons,
@@ -31,8 +33,6 @@ const iconSets = {
   SimpleLineIcons,
   Fontisto,
 };
-
-export type IconSetName = keyof typeof iconSets;
 
 const ioniconsNameMap: Record<string, string> = {
   ArrowLeft: 'arrow-back',
@@ -73,16 +73,6 @@ const ioniconsNameMap: Record<string, string> = {
   Calendar: 'calendar-outline',
   calendar: 'calendar-outline',
 };
-
-export interface IconProps {
-  name: string;
-  type?: IconSetName;
-  size?: number;
-  color?: string;
-  style?: StyleProp<ViewStyle>;
-  className?: string;
-  fallback?: React.ReactNode;
-}
 
 export const Icon: React.FC<IconProps> = ({
   name,
