@@ -81,6 +81,11 @@ export default function RootLayout() {
         <Stack.Screen name="contact-us" options={{ headerShown: false, animation: 'slide_from_right' }} />
         <Stack.Screen name="offers" options={{ headerShown: false, animation: 'slide_from_right' }} />
         <Stack.Screen name="edit-profile" options={{ headerShown: false, animation: 'slide_from_right' }} />
+        <Stack.Screen name="refer-and-earn" options={{ headerShown: false, animation: 'slide_from_right' }} />
+        <Stack.Screen name="about" options={{ headerShown: false, animation: 'slide_from_right' }} />
+        <Stack.Screen name="faq" options={{ headerShown: false, animation: 'slide_from_right' }} />
+        <Stack.Screen name="privacy-policy" options={{ headerShown: false, animation: 'slide_from_right' }} />
+        <Stack.Screen name="terms-and-conditions" options={{ headerShown: false, animation: 'slide_from_right' }} />
       </Stack>
       <ToastContainer />
     </>

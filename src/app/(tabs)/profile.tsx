@@ -1,15 +1,15 @@
 import { Icon, toast } from '@/components';
 import { LoadingScreen, ScreenProvider, Text } from '@/components/Reusable';
 import { BrandColors } from '@/constants/theme';
-import { ACCOUNT_ITEMS, MANAGE_ITEMS, SHOP_ITEMS, STATION_ITEMS } from '@/data';
+import { ACCOUNT_ITEMS, INFO_ITEMS } from '@/data';
 import { MenuItem } from '@/types';
 import { appNavigation } from '@/utils';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 
 const MenuListCard: React.FC<{
-  items: MenuItem[]; onItemPress: (item: MenuItem) => void;
-}> = ({ items, onItemPress }) => {
+  items: MenuItem[]; onItemPress?: (item: MenuItem) => void;
+}> = ({ items }) => {
   return (
     <View className="bg-white rounded-2xl px-4 border border-slate-300">
       {items.map((item, index) => {
@@ -18,7 +18,7 @@ const MenuListCard: React.FC<{
           <TouchableOpacity
             key={item.id}
             activeOpacity={0.7}
-            onPress={() => onItemPress(item)}
+            onPress={item.onPress}
             className={`flex-row items-center justify-between py-4 ${!isLast ? 'border-b border-slate-100' : ''
               }`}
           >
@@ -312,24 +312,9 @@ const ProfileScreen: React.FC = () => {
 
             <View className="mt-1">
               <Text weight="bold" className="text-base text-slate-900 mb-2.5">
-                Manage
+                Support & Info
               </Text>
-              <MenuListCard items={MANAGE_ITEMS} onItemPress={handleMenuPress} />
-            </View>
-            {/* Stations Section */}
-            <View className="mt-1">
-              <Text weight="bold" className="text-base text-slate-900 mb-2.5">
-                Stations
-              </Text>
-              <MenuListCard items={STATION_ITEMS} onItemPress={handleMenuPress} />
-            </View>
-
-            {/* Shop Section */}
-            <View className="mt-1">
-              <Text weight="bold" className="text-base text-slate-900 mb-2.5">
-                Shop
-              </Text>
-              <MenuListCard items={SHOP_ITEMS} onItemPress={handleMenuPress} />
+              <MenuListCard items={INFO_ITEMS} />
             </View>
             <View className="mt-1">
               <Text weight="bold" className="text-base text-slate-900 mb-2.5">

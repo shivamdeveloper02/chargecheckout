@@ -1,5 +1,5 @@
+import type { AppRoutePath, NavigationParams } from '@/types';
 import { router, type Href } from 'expo-router';
-import type { AppRouteKey, AppRoutePath, NavigationParams } from '@/types';
 export type { AppRouteKey, AppRoutePath, NavigationParams } from '@/types';
 
 export const ROUTES = {
@@ -15,7 +15,12 @@ export const ROUTES = {
   PROFILE: '/(tabs)/profile',
   CONTACTUS: '/contact-us',
   OFFERS: '/offers',
-  EDITPROFILE: '/edit-profile'
+  EDITPROFILE: '/edit-profile',
+  REFERANDEARN: '/refer-and-earn',
+  ABOUT: '/about',
+  FAQ: '/faq',
+  PRIVACYPOLICY: '/privacy-policy',
+  TERMSANDCONDITIONS: '/terms-and-conditions',
 } as const;
 
 const resolveHref = (
@@ -100,7 +105,12 @@ export const appNavigation = {
   toProfile: () => navigateTo(ROUTES.PROFILE),
   toContactUs: () => pushTo(ROUTES.CONTACTUS),
   toOffers: () => pushTo(ROUTES.OFFERS),
-  toEditProfile: () => pushTo(ROUTES.EDITPROFILE)
+  toEditProfile: () => pushTo(ROUTES.EDITPROFILE),
+  toReferAndEarn: () => pushTo(ROUTES.REFERANDEARN),
+  toAbout: () => pushTo(ROUTES.ABOUT),
+  toFaq: () => pushTo(ROUTES.FAQ),
+  toPrivacyPolicy: () => pushTo(ROUTES.PRIVACYPOLICY),
+  toTermsAndConditions: () => pushTo(ROUTES.TERMSANDCONDITIONS),
 } as const;
 
 export default appNavigation;
