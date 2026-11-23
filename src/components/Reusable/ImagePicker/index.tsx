@@ -36,6 +36,8 @@ const ImagePicker: React.FC<ImagePickerProps> = ({
     onPress,
     className = '',
     style,
+    title = "Profile photo",
+    description = "Choose how you want to add a photo",
 }) => {
     const [hasError, setHasError] = useState(false);
     const [sheetOpen, setSheetOpen] = useState(false);
@@ -132,11 +134,15 @@ const ImagePicker: React.FC<ImagePickerProps> = ({
             {editable && (
                 <Modal isOpen={sheetOpen} onClose={closeSheet} position="bottom">
                     <Modal.Header>
-                        <Modal.Title>Profile photo</Modal.Title>
-                        <Modal.Description>Choose how you want to add a photo</Modal.Description>
+                        <Modal.Title>{title}</Modal.Title>
+                        <Modal.Description>{description}</Modal.Description>
                     </Modal.Header>
                     <View className="px-5 pb-3 pt-2">
-                        <SheetOption icon="camera-outline" label="Take photo" onPress={() => handlePickImage('camera')} />
+                        <SheetOption
+                            icon="camera-outline"
+                            label="Take photo"
+                            onPress={() => handlePickImage('camera')}
+                        />
                         <SheetOption
                             icon="images-outline"
                             label="Choose from gallery"

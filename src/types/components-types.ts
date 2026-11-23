@@ -119,6 +119,8 @@ export interface ImagePickerProps {
     onPress?: () => void;
     className?: string;
     style?: StyleProp<ViewStyle>;
+    title?: string;
+    description?: string;
 }
 
 export interface SheetOptionProps {

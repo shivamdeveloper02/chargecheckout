@@ -4,7 +4,7 @@ import { appNavigation } from "@/utils";
 export const INFO_ITEMS: MenuItem[] = [
     {
         id: 'refer-and-earn',
-        label: 'Refer and Earn',
+        label: 'Refer & Earn',
         iconName: 'gift-outline',
         iconType: 'Ionicons',
         onPress: () => appNavigation.toReferAndEarn(),
@@ -25,7 +25,7 @@ export const INFO_ITEMS: MenuItem[] = [
     },
     {
         id: 'terms-and-conditions',
-        label: 'Terms and Conditions',
+        label: 'Terms & Conditions',
         iconName: 'document-text-outline',
         iconType: 'Ionicons',
         onPress: () => appNavigation.toTermsAndConditions(),
