@@ -1,66 +1,39 @@
 import { BrandColors } from '@/constants/theme';
-import type { LoadingScreenProps } from '@/types';
-import { Image } from 'expo-image';
-import React, { useEffect, useRef } from 'react';
-import { Animated, Easing, View } from 'react-native';
+import React from 'react';
+import { ActivityIndicator, Modal, View } from 'react-native';
 import Text from '../Text';
-
+interface LoadingScreenProps {
+    message?: string;
+    visible?: boolean;
+}
 const LoadingScreen: React.FC<LoadingScreenProps> = ({
     message = 'Loading...',
     visible = true,
-    overlay = true,
-    style,
 }) => {
-    const translateX = useRef(new Animated.Value(-100)).current;
-
-    useEffect(() => {
-        if (!visible) return;
-        translateX.setValue(-100);
-        const animation = Animated.loop(
-            Animated.sequence([
-                Animated.timing(translateX, {
-                    toValue: 200,
-                    duration: 1200,
-                    easing: Easing.inOut(Easing.ease),
-                    useNativeDriver: true,
-                }),
-                Animated.timing(translateX, {
-                    toValue: -100,
-                    duration: 0,
-                    useNativeDriver: true,
-                }),
-            ])
-        );
-        animation.start();
-
-        return () => animation.stop();
-    }, [translateX, visible]);
-
-    if (!visible) {
-        return null;
-    }
+    if (!visible) return null;
 
     return (
-        <View className={`flex-1 items-center justify-center bg-white ${overlay ? 'absolute inset-0 z-50' : ''}`} style={style}>
-            <Image
-                source={require('@/assets/images/chargecheckout-logo.png')}
-                style={{ width: 160, height: 120 }}
-                contentFit="contain"
-                priority="high"
-            />
-            <View className="h-1.5 w-[200px] overflow-hidden rounded-full bg-gray-200">
-                <Animated.View
-                    className="h-full w-[100px] rounded-full"
-                    style={{
-                        backgroundColor: BrandColors.primary.DEFAULT,
-                        transform: [{ translateX }],
-                    }}
-                />
+        <Modal
+            transparent
+            visible={visible}
+            animationType="fade"
+            statusBarTranslucent
+            onRequestClose={() => { }}
+        >
+            <View className="flex-1 items-center justify-center bg-black/30">
+                <View className="mx-6 w-5/6 flex-row items-center justify-center rounded-2xl border border-gray-100 bg-white p-5">
+                    <ActivityIndicator size="large" color={BrandColors.primary.DEFAULT} />
+                    <View className="ml-4 flex-1 justify-center">
+                        <Text weight="semibold" className="text-lg text-gray-800">
+                            Please wait
+                        </Text>
+                        <Text weight="medium" className="mt-1 text-sm text-gray-500">
+                            {message}
+                        </Text>
+                    </View>
+                </View>
             </View>
-            <Text weight="medium" className="mt-4 text-sm text-gray-500">
-                {message}
-            </Text>
-        </View>
+        </Modal>
     );
 };
 

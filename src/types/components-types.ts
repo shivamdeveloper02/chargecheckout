@@ -431,13 +431,6 @@ export interface TextProps extends RNTextProps {
     className?: string;
 }
 
-export interface LoadingScreenProps {
-    message?: string;
-    visible?: boolean;
-    overlay?: boolean;
-    style?: ViewStyle;
-}
-
 export type CustomHeaderVariant =
     | 'default'
     | 'secondary'

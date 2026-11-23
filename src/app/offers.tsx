@@ -6,12 +6,14 @@ import { CouponCategory, CouponItem } from '@/types';
 import React, { useMemo, useState } from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 
-const CouponCard: React.FC<{
+interface CouponCardProps {
   coupon: CouponItem;
   isExpanded: boolean;
   onToggleExpand: (id: string) => void;
-  onApply: (coupon: CouponItem) => void;
-}> = ({ coupon, isExpanded, onToggleExpand, onApply }) => {
+  onCopy: (coupon: CouponItem) => void;
+}
+
+const CouponCard: React.FC<CouponCardProps> = ({ coupon, isExpanded, onToggleExpand, onCopy }) => {
   return (
     <View className="bg-secondary-50/55 rounded-2xl border border-secondary-100 overflow-hidden">
       {/* Top White Summary Card */}
@@ -56,11 +58,11 @@ const CouponCard: React.FC<{
         {/* Apply Action Button */}
         <TouchableOpacity
           activeOpacity={0.75}
-          onPress={() => onApply(coupon)}
+          onPress={() => onCopy(coupon)}
           className="px-3.5 py-1.5 rounded-xl bg-primary/10 border border-primary/40"
         >
           <Text weight="semibold" className="text-xs text-primary-700">
-            Apply
+            Copy
           </Text>
         </TouchableOpacity>
       </View>
@@ -108,7 +110,7 @@ const OffersScreen: React.FC = () => {
     }));
   };
 
-  const handleApplyCoupon = (coupon: CouponItem) => {
+  const handleCopyCoupon = (coupon: CouponItem) => {
     toast.success(`${coupon.code} applied to your account!`, 'Coupon Applied');
   };
 
@@ -162,9 +164,9 @@ const OffersScreen: React.FC = () => {
               <CouponCard
                 key={coupon.id}
                 coupon={coupon}
-                isExpanded={!collapsedIds[coupon.id]}
+                isExpanded={collapsedIds[coupon.id]}
                 onToggleExpand={handleToggleExpand}
-                onApply={handleApplyCoupon}
+                onCopy={handleCopyCoupon}
               />
             ))
           ) : (
